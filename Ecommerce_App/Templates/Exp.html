@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroVerse - Home</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #1b0033, #22005c);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #6c33a3, #4cd7d0);
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #22005c;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/6d2c5b68-1c8c-4b44-b184-d90a0d7beab4/d5b2d3f1-ca9e-4d70-80e5-a43e5680ee37.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero a {
+            background: #6c33a3;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .hero a:hover {
+            transform: scale(1.1);
+            background: #4cd7d0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+    /* Categories Section */
+.categories {
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, #22005c, #1b0033);  /* Keep gradient */
+}
+
+.categories h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.categories .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.category-card {
+    background: #6e4f86;  /* Muted grayish purple for subtle contrast */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+}
+
+.category-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.category-card h3 {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    background: #00b3b3;  /* Deep cyan for heading */
+    color: #fff;
+    margin: 0;
+}
+
+.category-card a {
+    display: inline-block;
+    background: #5f33a1;  /* Darker purple for the button */
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.category-card a:hover {
+    background: #00d3d3;  /* Light cyan on hover */
+    transform: scale(1.1);
+}
+
+/* Featured Products Section */
+.featured-products {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Dark purple gradient */
+
+}
+
+.featured-products h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #00f5d4; /* Cyan color for the heading */
+    font-weight: bold;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.product {
+    background-color: rgba(255, 255, 255, 0.08); /* Subtle white overlay */
+    border-radius: 15px;
+    border: 1px solid rgba(0, 245, 212, 0.2); /* Cyan border with transparency */
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Adds depth */
+    padding: 1.5rem;
+    flex: 1 1 calc(33.333% - 2rem); /* Flex items take up ~33% of container width */
+    max-width: 300px; /* Ensures uniform product sizes */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-10px); /* Hover effect */
+    box-shadow: 0 10px 25px rgba(0, 245, 212, 0.4); /* Cyan glow effect */
+}
+
+.product img {
+    width: 100%;
+    height: 45%;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Adds subtle depth to images */
+}
+
+.product h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00f5d4; /* Cyan for product names */
+
+}
+
+.product p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: #d9d9d9; /* Light gray text for better readability */
+    text-align: center;
+}
+
+.product button {
+    color: white;
+    background: linear-gradient(to right, #00f5d4, #3c096c); /* Cyan to purple gradient */
+
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.product button:hover {
+    background: linear-gradient(to left, #00f5d4, #3c096c); /* Reverse gradient on hover */
+    transform: scale(1.1); /* Slight zoom effect */}
+
+
+
+        /* Footer */
+        footer {
+            background: #11002b;
+            color: #888;
+            padding: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #4cd7d0;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #6c33a3;
+        }
+
+
+/* Features Section */
+.features {
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, #22005c, #1b0033);
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.features .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: #5e2a88;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, #1b0033, #22005c);
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.testimonials .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background: #6c33a3;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.05);
+}
+
+/* About Us Section */
+.about-us {
+    width: 100%;
+    background: linear-gradient(135deg, #22005c, #1b0033);
+    padding: 6rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+    padding: 1rem;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.about-content {
+    flex: 1;
+    padding: 1rem;
+    color: #fff;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #4cd7d0;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Contact Us Section */
+.contact-us {
+    width: 100%;
+    background: linear-gradient(135deg, #1b0033, #22005c);
+    padding: 6rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    max-width: 1200px;
+    gap: 2rem;
+    align-items: center;
+}
+
+.contact-image {
+    flex: 1;
+    padding: 1rem;
+}
+
+.contact-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-content {
+    flex: 1;
+    padding: 1rem;
+    color: #fff;
+}
+
+.contact-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #4cd7d0;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+/* Shared Container Styling for Both Sections */
+.about-container,
+.contact-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background */
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ElectroVerse</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Featured</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h2>Welcome to ElectroVerse</h2>
+        <p>Unleash the power of innovation with our latest gadgets.</p>
+        <a href="#featured">Explore Now</a>
+    </div>
+</section>
+
+<section id="categories" class="categories">
+    <h2>Shop by Categories</h2>
+    <div class="grid">
+        <div class="category-card">
+            <img src="https://via.placeholder.com/300x200" alt="Laptops">
+            <h3>Laptops</h3>
+        </div>
+        <div class="category-card">
+            <img src="https://www.gizchina.com/wp-content/uploads/images/2023/06/flagship-smartphones-2023.jpg" alt="Smartphones">
+            <h3>Smartphones</h3>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/300x200" alt="Accessories">
+            <h3>Accessories</h3>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section style="background-color: #0093E9;" class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="product-container">
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/71CXhVhpM0L._AC_UY327_FMwebp_QL65_.jpg" alt="Product 1">
+            <h3>Samsung Galaxy S24 Ultra</h3>
+            <p>"The Samsung Galaxy S24 Ultra offers a stunning 6.8-inch display, powerful performance, and a cutting-edge camera system for stunning photos and videos. Experience top-tier tech in a sleek design."</p>
+            <a href="{% url 'product_list' 'all' %}"><button>View Details</button></a>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/619oqSJVY5L._AC_UY327_FMwebp_QL65_.jpg" alt="Product 2">
+            <h3>iPhone 16 Pro Max</h3>
+            <p>"The iPhone 16 Pro Max delivers exceptional performance, an impressive 48MP camera, and a beautiful OLED display. It’s designed for those who demand the best in technology and style."</p>
+            <a href="{% url 'product_list' 'all' %}"><button>View Details</button></a>
+        </div>
+        <div class="product">
+            <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/m/p/j/-original-imah5mtpdzrutn3c.jpeg?q=70" alt="Product 3">
+            <h3>Google Pixel 9 Pro</h3>
+            <p>"The Google Pixel 9 Pro combines cutting-edge AI with a stunning camera for professional-grade photos, all powered by Google’s smooth and intuitive Android experience."</p>
+            <a href="{% url 'product_list' 'all' %}"><button>View Details</button></a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+    <h2>Our Features</h2>
+    <div class="grid">
+        <div class="feature-card">
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230718/pngtree-illustration-of-a-conceptual-electronic-device-network-in-3d-image_3907551.jpg" alt="Feature 1">
+            <h3>Wide Product Range</h3>
+            <p>From phones to smartwatches, find all your tech essentials in one place.</p>
+        </div>
+        <div class="feature-card">
+            <img src="https://a.storyblok.com/f/165154/1280x720/922b3e014d/01_fast-international-shipping-ecommerce.jpg/m/" alt="Feature 2">
+            <h3>Fast Worldwide Shipping</h3>
+            <p>Get your favorite gadgets delivered quickly, no matter where you are.</p>
+        </div>
+        <div class="feature-card">
+            <img src="https://cdn.prod.website-files.com/64a83d4453b353ae789d6387/6576f0995897f1db762833f2_23s.jpg" alt="Feature 3">
+            <h3>Exceptional Customer Support</h3>
+            <p>We’re here to help you every step of the way. Your satisfaction is our priority.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="grid">
+        <!-- Row 1 -->
+        <div class="testimonial-card">
+            <p>"Amazing service! Products are top-notch."</p>
+            <span>- Customer 1</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"Quick delivery and great support."</p>
+            <span>- Customer 2</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"Highly recommend ElectroVerse for gadgets!"</p>
+            <span>- Customer 3</span>
+        </div>
+        <!-- Row 2 -->
+        <div class="testimonial-card">
+            <p>"Best e-commerce experience ever!"</p>
+            <span>- Customer 4</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"The product quality exceeded my expectations."</p>
+            <span>- Customer 5</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"Absolutely love their service and prices!"</p>
+            <span>- Customer 6</span>
+        </div>
+    </div>
+</section>
+
+<section id="about-us" class="about-us">
+    <div class="about-container">
+        <div class="about-image">
+            <img src="https://shivamstockbroking.com/assets/website/abtcontent/5f17115c212b2abt.jpg" alt="About Us">
+        </div>
+        <div class="about-content">
+            <h2>About Us</h2>
+            <p>
+                Welcome to TechnoVerse, your go-to place for the latest and greatest in technology. We offer a curated selection of premium electronic gadgets, including smartphones, smartwatches, and other innovative products.
+            </p>
+            <p>
+                Our mission is to provide high-quality, cutting-edge tech products and deliver them worldwide, directly to your doorstep. We are passionate about technology and customer satisfaction, and we’re committed to bringing you the best in the industry.
+            </p>
+            <a href="{% url 'abouts' %}" class="btn-learn-more">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<section id="contact-us" class="contact-us">
+    <div class="contact-container">
+        <div class="contact-content">
+            <h2>Contact Us</h2>
+            <p>
+                Our team is ready to assist you. Whether it's a product inquiry or support request, any questions, feedback. Feel free to get in touch with us. Visit our Contact Us page for more details."
+            </p>
+            <p>Email: info@TechnoVerse.com</p>
+            <p>Phone: + 1235 2355 98</p>
+            <a href="{% url 'contacts' %}" class="btn-learn-more">Learn More</a>
+        </div>
+        <div class="contact-image">
+            <img src="https://img.freepik.com/free-vector/organic-flat-man-customer-support_23-2148893295.jpg?semt=ais_hybrid" alt="Contact Us">
+        </div>
+    </div>
+</section>
+
+
+
+       
+        

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h1>Complete Your Payment</h1>
+    <button id="pay-button">Pay Now</button>
+
+    <script>
+        // Razorpay options
+        var options = {
+            "key": "{{ razorpay_key }}",  // Add your Razorpay public key
+            "amount": "{{ amount }}",     // Amount in paise
+            "currency": "{{ currency }}",
+            "order_id": "{{ razorpay_order_id }}", // Order ID from Razorpay
+            "name": "TechnoVerse",       // Your business name
+            "description": "Complete the payment",
+            "image": "https://example.com/your-logo.png", // Logo (optional)
+            "callback_url": "/payment-success/",  // URL to verify payment
+            "theme": {
+                "color": "#3399cc"        // Optional: Customize checkout color
+            }
+        };
+
+        // Attach Razorpay checkout to the button
+        var rzp = new Razorpay(options);
+
+        document.getElementById('pay-button').onclick = function(e) {
+            rzp.open();
+            e.preventDefault();
+        };
+    </script>
+</body>
+</html>

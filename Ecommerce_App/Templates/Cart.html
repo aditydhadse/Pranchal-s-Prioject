@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .cart-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+      
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-table th {
+            background-color: #0078d7;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .cart-table td img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .cart-table .product-name {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .cart-table .product-price, 
+        .cart-table .product-quantity, 
+        .cart-table .product-total {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .cart-table .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cart-table .quantity-btn {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border: none;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cart-table .quantity-btn:hover {
+            background-color: #e64a19;
+        }
+
+        .cart-table .quantity-display {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            width: 30px;
+            text-align: center;
+        }
+
+        .cart-table .remove-all {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            border: none;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cart-table .remove-all:hover {
+            background-color: #e64a19;
+        }
+
+        .cart-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-actions .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .cart-actions button {
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cart-actions button:hover {
+            background-color: #e64a19;
+        }
+
+        .cart-actions .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0078d7;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5rem;
+            color: #888;
+        }
+        .mobile-view {
+                display: none;
+            }
+
+ /* Mobile and Tablet View */
+ @media (max-width: 768px) {
+     /* Remove horizontal scrollbar */
+     body {
+        overflow-x: hidden;
+    }
+            .cart-table {
+                display: none;
+            }
+
+            .mobile-view {
+                display: block;
+                width: 93%;
+            }
+            .cart-header{
+                width: 93%;
+            }
+            .cart-actions{
+                width: 93%;
+            }
+            .buttons button{
+                font-size: small;
+            }
+
+            .cart-item-card {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                background: white;
+                margin-bottom: 15px;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .cart-item-card img {
+                width: 40%;
+                height: 40%;
+                object-fit: cover;
+                margin-right: 15px;
+                border-radius: 8px;
+            }
+
+            .cart-item-details {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .cart-item-details .product-name {
+                font-weight: bold;
+                color: #333;
+            }
+
+            .cart-item-details .product-price,
+            .cart-item-details .product-total {
+                font-size: 0.9rem;
+                color: #555;
+            }
+
+            .cart-item-details .quantity-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .cart-item-details .quantity-btn {
+                padding: 5px 10px;
+                background-color: #0078d7;
+                color: white;
+                border: none;
+                border-radius: 5px;
+            }
+
+            .cart-item-details .quantity-btn:hover {
+                background-color: #005bb5;
+            }
+
+            .cart-item-details .remove-all {
+                background-color: #ff5722;
+                color: white;
+                padding: 8px 10px;
+                font-size: 0.9rem;
+                border-radius: 5px;
+            }
+
+            .cart-item-details .remove-all:hover {
+                background-color: #e64a19;
+            }
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cart-header">
+            <h1>Your Shopping Cart</h1>
+        </div>
+
+        <!-- Cart Table Desktop View Table -->
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                 {% if user.is_authenticated %}
+                <tr id="cart-item-{{ item.product.id }}">
+                    <td><img src="{{ item.product.image_url }}" alt="{{ item.product.name }}"></td>
+                    <td class="product-name">{{ item.product.name }}</td>  <!--why item.product.name? because cart table has foreign key for product column-->
+                    <td class="product-price">₹{{ item.product.discount_price }}</td>
+                    <td class="product-quantity">
+                        <div class="quantity-container">
+                            <form method="POST" action="{% url 'add_to_cart' item.product.id %}">
+                                {% csrf_token %}
+                                <button type="button" onclick="addToCart('{{ item.product.id }}')" class="quantity-btn">+</button>
+                            </form>
+                            <span id="quantity-{{ item.product.id }}" class="quantity-display">{{ item.quantity }}</span>
+                            <form method="POST" action="{% url 'remove_from_cart' item.product.id %}">
+                                {% csrf_token %}
+                                <button type="button" onclick="removeFromCart('{{ item.product.id }}')" class="quantity-btn">-</button>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="product-total">₹<span>{{ item.subtotal }}</span></td>
+                    <form method="POST" action="{% url 'remove_all_from_cart' item.product.id %}">
+                        {% csrf_token %}
+                        <td><button type="submit" class="remove-all">Remove All</button></td>
+                    </form>
+                    {% else %}
+                    <p><a href="{% url 'login' %}">Login to manage your cart</a></p>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <!-- Mobile View Cards -->
+        <div class="mobile-view">
+            {% for item in cart_items %}
+            {% if user.is_authenticated %}
+            <div class="cart-item-card">
+                <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                <div class="cart-item-details">
+                    <div class="product-name">{{ item.product.name }}</div>
+                    <div class="product-price">Price: ₹{{ item.product.discount_price }}</div>
+                    <div class="quantity-container">
+
+                        <form  method="POST" action="{% url 'remove_from_cart' item.product.id %}">
+                            {% csrf_token %}
+                        <button type="button" onclick="removeFromCart('{{ item.product.id }}')" class="quantity-btn">-</button>
+                        </form>
+
+                        <span id="quantity-{{ item.product.id }}" class="quantity-display">{{ item.quantity }}</span>
+
+                        <form  method="POST" action="{% url 'add_to_cart' item.product.id %}">
+                            {% csrf_token %}
+                        <button type="button" onclick="addToCart('{{ item.product.id }}')" class="quantity-btn">+</button>
+                        </form>
+
+                    </div>
+                    <div class="product-total">₹<span id="mobile-total-{{ item.product.id }}">{{ item.subtotal }}</span></div>
+
+                    <form method="POST" action="{% url 'remove_all_from_cart' item.product.id %}">
+                        {% csrf_token %}
+                    <button type="submit" class="remove-all">Remove All</button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <!-- Cart Actions -->
+        <div class="cart-actions">
+            <div class="total-price">Total: ₹<span id="cart_total">{{ cart_total }}</span></div>
+            <div class="buttons">
+                <a href="{% url 'checkout' %}"><button>Proceed to Checkout</button></a>
+                <form method="POST" action="{% url 'clear_cart' %}">
+                    {% csrf_token %}
+                    <button type="submit">Clear Cart</button>
+                </form>
+                <a href="{% url 'product_list' 'all' %}"><button>Go Back to Products</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+        <!-- Display alert message if 'message' exists -->
+        {% if messages %} <!--messages coming from views-->
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red; font-weight: bold; text-align: center;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+<script>
+    // JavaScript function to handle the add to cart functionality
+    function addToCart(productId) {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+        
+        // Generate the correct URL dynamically with the productId
+        const url = "{% url 'add_to_cart' 0 %}".replace('0', productId);
+
+        // Send AJAX request to add the product to the cart
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken, // Pass CSRF token for security
+                'X-Requested-With': 'XMLHttpRequest'  // Specify it's an AJAX request
+            },
+            body: JSON.stringify({}) // Send empty object for now, can include other data if needed
+        })
+        .then(response => response.json())  // Parse the response as JSON
+        .then(data => {
+            if (data.success) {
+                // Update the quantity display with the updated quantity
+                document.getElementById(`quantity-${productId}`).innerText = data.updated_quantity;
+
+                  // Update product subtotal
+                const productSubtotalElement = document.querySelector(`#cart-item-${productId} .product-total span`);
+                if (productSubtotalElement) {
+                    productSubtotalElement.innerText = data.product_subtotal;
+                }
+
+                  // Update mobile view
+            const mobileQuantity = document.querySelector(`.mobile-view #quantity-${productId}`);
+            if (mobileQuantity) {
+                mobileQuantity.innerText = data.updated_quantity;
+            }
+
+            const mobileSubtotal = document.querySelector(`#mobile-total-${productId}`);
+            if (mobileSubtotal) {
+                mobileSubtotal.innerText = data.product_subtotal;
+            }
+
+            } else {
+                console.error('Failed to add to cart');
+            }
+
+            updateCart()
+        })
+        .catch(error => console.error('Error:', error)); // Log any errors that occur
+    }
+
+
+
+// Function to decrease product quantity in the cart
+function removeFromCart(productId) {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+    
+    const url = "{% url 'remove_from_cart' 0 %}".replace('0', productId); // Generate the correct URL
+
+    // Send AJAX request to remove product from the cart
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken, // Pass CSRF token for security
+            'X-Requested-With': 'XMLHttpRequest' // Specify it's an AJAX request
+        },
+        body: JSON.stringify({}) // Send an empty object for now
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the quantity display
+            const quantityElement = document.getElementById(`quantity-${productId}`);
+            const productSubtotalElement = document.querySelector(`#cart-item-${productId} .product-total span`);  // Subtotal element for the product
+
+            if (data.updated_quantity > 0) {
+                quantityElement.innerText = data.updated_quantity; // Update quantity
+                if (productSubtotalElement) {
+                productSubtotalElement.innerText = data.product_subtotal; // Update subtotal
+                }
+            } else {
+                // Remove the item from the cart if quantity is 0
+                const cartItemElement = quantityElement.closest('tr');
+                cartItemElement.remove();
+            }
+
+             // Update mobile view
+             const mobileQuantity = document.querySelector(`.mobile-view #quantity-${productId}`);
+            if (mobileQuantity) {
+                if (data.updated_quantity > 0) {
+                    mobileQuantity.innerText = data.updated_quantity;
+
+                    const mobileSubtotal = document.querySelector(`#mobile-total-${productId}`);
+                    if (mobileSubtotal) {
+                        mobileSubtotal.innerText = data.product_subtotal;
+                    }
+                } else {
+                    const mobileItemCard = mobileQuantity.closest('.cart-item-card');
+                    if (mobileItemCard) mobileItemCard.remove();
+                }
+            }
+
+            updateCart()
+
+        } else {
+            console.error('Failed to remove from cart');
+        }
+
+    })
+    .catch(error => console.error('Error:', error)); // Log any errors that occur
+}
+
+// Function to update the total price
+function updateCart() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+
+    // Send AJAX request to get the updated cart total
+    fetch("{% url 'carts' %}", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken, // Pass CSRF token for security
+            'X-Requested-With': 'XMLHttpRequest' // Specify it's an AJAX request
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.cart_total !== undefined) {
+            // Update the total price in the cart
+            const cartTotalElement = document.getElementById('cart_total');
+            if (cartTotalElement) {
+                cartTotalElement.innerText = data.cart_total; // Update total price
+            }
+        } else {
+            console.error('Failed to fetch updated cart total');
+        }
+    })
+    .catch(error => console.error('Error:', error)); // Log any errors that occur
+}
+
+
+</script>
+</body>
+</html>

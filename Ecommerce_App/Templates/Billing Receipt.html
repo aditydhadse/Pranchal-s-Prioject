@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Below Related to PDF File Downloads -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+
+    <title>Billing Receipt</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #c7bfbf;
+            margin: 0;
+            padding: 0;
+        }
+
+        .receipt-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .product-details {
+            margin-bottom: 30px;
+        }
+
+        .product-details th, .product-details td {
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .product-details th {
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        .product-details td {
+            background-color: #ecf0f1;
+        }
+
+        .total {
+            font-size: 18px;
+            text-align: right;
+            padding: 20px 0;
+            font-weight: bold;
+            border-top: 2px solid #2c3e50;
+        }
+
+        .order-info {
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        .order-info h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .order-info p {
+            margin: 5px 0;
+            color: #7f8c8d;
+        }
+
+        .order-info p span {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e67e22;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    font-size: 16px; /* Ensure consistent font size */
+    border: none; /* Remove border for uniformity */
+    cursor: pointer; /* Ensure pointer style for both */
+}
+
+.button:hover {
+    background-color: #d35400;
+}
+
+#bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-status {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 30px 0;
+            text-transform: uppercase;
+}
+
+.cod-status {
+    color: red;
+}
+
+.online-status {
+    color: green;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="receipt-container">
+    <h1>Billing Receipt</h1>
+
+    <!-- Payment Status -->
+    <div class="payment-status {% if payment_status == 'COD' %}cod-status{% else %}online-status{% endif %}">***Payment Status: {{ payment_status }}***</div>
+
+    <div class="product-details">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>₹ {{ item.product.discount_price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹ {{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="total">
+        ₹ {{cart_total}}
+    </div>
+
+    <div class="order-info">
+        <h3>Order Information</h3>
+        <p><span>Order ID:</span> {{orderid}} </p>
+        <p><span>Order Date & Time:</span> {{bdate}} </p>
+        <p><span>Delivery Date:</span> {{ddate}} </p>
+
+        <h3>Customer Information</h3>
+        <p><span>Name:</span> {{cname}} </p>
+        <p><span>Mobile:</span> {{cnumber}}</p>
+        <p><span>Email:</span> {{cemail}} </p>
+        <p><span>Special Note:</span> {{cnote}} </p>
+        <p><span>Address:</span> {{caddress}} </p>
+    </div>
+
+    <div id="bottom-buttons">
+    <a href="#" class="button" onclick="generatePDF()">Print Receipt</a>
+
+    <form method="POST" action="{% url 'billing_clear_cart' %}">
+        {% csrf_token %}
+    <button class="button" type="submit" style="border: none;">Go To Home</button>
+    </form>
+
+    </div>
+
+</div>
+
+<script>
+    async function generatePDF() {
+        // Get the element to convert to PDF
+        const element = document.querySelector('.receipt-container');
+
+        // Use html2canvas to capture the element as an image
+        const canvas = await html2canvas(element, { scale: 2 });
+
+        // Convert the canvas to a data URL
+        const imgData = canvas.toDataURL('image/png');
+
+        // Create a new PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4'); // Portrait, millimeters, A4 size
+
+        // Get the dimensions of the A4 page
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        // Calculate image dimensions while maintaining aspect ratio
+        const imgWidth = pageWidth;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Add the image to the PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+        // Save the PDF
+        pdf.save('Billing_Receipt.pdf');
+    }
+
+// Target Element:
+// The function selects the HTML element (like a receipt) to be converted to a PDF using:
+// const element = document.querySelector('.receipt-container');
+
+
+// Capture as Image:
+// It uses html2canvas to capture the selected HTML element and render it as an image. The scale: 2 ensures high-quality resolution:
+// const canvas = await html2canvas(element, { scale: 2 });
+
+
+// Convert to Data URL:
+// The canvas (image) is converted to a data URL (base64 string) that can be embedded in the PDF:
+// const imgData = canvas.toDataURL('image/png');
+
+
+// Initialize PDF:
+// A new PDF object is created using jsPDF, set to portrait mode ('p'), with units in millimeters ('mm'), and A4 size:
+// const pdf = new jsPDF('p', 'mm', 'a4');
+
+
+// Calculate Image Dimensions:
+// It calculates how the image fits on the A4 page while maintaining the original aspect ratio:
+// const imgWidth = pageWidth;
+// const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+
+// Add Image to PDF:
+// The captured image is added to the PDF starting from the top-left corner (x=0, y=0):
+// pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+
+// Save PDF:
+// Finally, the PDF file is saved with the name Billing_Receipt.pdf:
+// pdf.save('Billing_Receipt.pdf');
+
+
+// Summary in 1 Sentence:
+// The function captures an HTML element as an image, fits it onto an A4-sized PDF, and downloads it as Billing_Receipt.pdf while maintaining high resolution.
+</script>
+
+
+</body>
+</html>

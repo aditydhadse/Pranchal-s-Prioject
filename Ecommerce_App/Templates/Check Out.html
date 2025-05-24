@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out</title>
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #c7bfbf;
+            margin: 0;
+            padding: 0;
+        }
+
+        .receipt-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .product-details {
+            margin-bottom: 30px;
+        }
+
+        .product-details th, .product-details td {
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .product-details th {
+            background-color: #34495e;
+            color: #fff;
+        }
+
+        .product-details td {
+            background-color: #ecf0f1;
+        }
+
+        .total {
+            font-size: 18px;
+            text-align: right;
+            padding: 20px 0;
+            font-weight: bold;
+            border-top: 2px solid #2c3e50;
+        }
+
+        .order-info {
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        .order-info h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .order-info p {
+            margin: 5px 0;
+            color: #7f8c8d;
+        }
+
+        .order-info p span {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e67e22;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d35400;
+        }
+
+        #buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#buttons button {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#buttons button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+#buttons button:active {
+    background-color: #1e6b9b;
+}
+
+#buttons a {
+    text-decoration: none;
+}
+
+#buttons button:first-of-type {
+    background-color: #e67e22;
+}
+
+#buttons button:first-of-type:hover {
+    background-color: #d35400;
+}
+
+#buttons button:first-of-type:active {
+    background-color: #b54100;
+}
+
+
+        /* Below for Form */
+        form {
+        margin-top: 20px;
+    }
+
+    form input, form textarea, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+
+    form input:focus, form textarea:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+        outline: none;
+    }
+
+    form textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    form button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    form button:hover {
+        background-color: #2980b9;
+        transform: scale(1.03);
+    }
+
+    form button:active {
+        background-color: #1e6b9b;
+    }
+
+    .form-control {
+        background-color: #f9f9f9;
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="receipt-container">
+    <h1>Check Out</h1>
+
+    <div class="product-details">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>₹ {{ item.product.discount_price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹ {{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="total">
+        ₹ {{cart_total}}
+    </div>
+
+    <div id="buttons">
+        <a href="{% url 'carts' %}"><button>Back To Cart</button></a>
+        <a href="{% url 'product_list' 'all' %}"><button>Back To Products</button></a>
+    </div>
+
+    <div class="order-info">
+        <h3>Customer Information</h3>
+
+        <form method="POST" action="{% url 'payment' %}">
+            {% csrf_token %}
+            <input required  name="uname" type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+
+            <input required  name="mobile" type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
+
+            <input required  name="umail" type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+
+            <textarea name="note" class="form-control border-0" placeholder="Special Note"></textarea>
+
+            <textarea required name="address" class="form-control border-0" placeholder="Address"></textarea>
+
+            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoVerse - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+   <style>
+        /* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #3c096c, #00f5d4); /* Purple and Cyan Blue Gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Login Box Styling */
+.login-box {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay with transparency */
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 150px; /* Set logo width */
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #00f5d4; /* Cyan Color */
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 1rem;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.input-group input:focus {
+    border: 2px solid #00f5d4; /* Cyan border on focus */
+}
+
+.login-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to right, #6c33a3, #00f5d4); /* Purple to Cyan Gradient */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(to right, #00f5d4, #6c33a3); /* Reversed Gradient on Hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.forgot-password {
+    margin-top: 1.5rem;
+}
+
+.forgot-password a {
+    color: #00f5d4;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-container">
+                <!-- Logo Image (Replace with your company logo image) -->
+                <img src="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" alt="TechnoVerse Logo" class="logo">
+            </div>
+            <h2>Welcome to TechnoVerse</h2>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div> 
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input name="uname" type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input name="upassword" type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <p class="forgot-password">Not Registered? <a href="{% url 'sign_up' %}"> Create any Account</a></p>
+        </div>
+    </div>
+</body>
+</html>

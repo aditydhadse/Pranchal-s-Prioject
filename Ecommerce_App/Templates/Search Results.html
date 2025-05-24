@@ -1,0 +1,1237 @@
+{% load cart_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoVerse - Search Results</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            /* font-family: Arial, sans-serif; */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            /* background-color: #0093E9;
+            background-image: linear-gradient(180deg, #0093E9 0%, #80D0C7 100%); */
+            background-color: #d19b94;
+
+        }
+        /* Navbar Container */
+        nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 0px 15px; /* Reduced vertical padding for a tighter look */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for modern look */
+    background: linear-gradient(90deg, #6c33a3, #4cd7d0);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px; /* Perfect font size */
+    padding: 6px 12px; /* Reduced padding for tighter spacing */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    line-height: 1; /* Ensures minimal spacing inside the links */
+}
+
+nav a:hover {
+    color: #fff;
+    background-color: #a566ff;
+}
+
+/* Left Section: Logo */
+nav > a {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    font-size: 22px; /* Slightly larger for brand emphasis */
+    line-height: 1; /* Aligns logo text with nav items */
+}
+.TV{
+    font-size: xx-large;
+     color: #ff8800;
+}
+
+.TV:hover{
+    background-color: #00f5d4;
+    color: #6c33a3;
+}
+
+/* Center Section: Navigation Links */
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-center a,
+.nav-center .dropdown {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Purple gradient */
+    border: 1px solid rgba(76, 215, 208, 0.3); /* Transparent cyan border */
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    padding: 8px 25px; /* Compact padding for dropdown items */
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    color: #4cd7d0; /* Cyan text */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: #6c33a3; /* Light purple on hover */
+    color: #fff; /* White text */}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Right Section: User, Cart, and Search */
+.nav-right {
+    display: flex;
+    align-items: center; /* Ensures all elements align vertically */
+    gap: 15px; /* Adds consistent spacing between elements */
+}
+
+/* Links in the right section */
+.nav-right a {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    color: #fff;
+}
+.nav-right a:hover{
+    background-color: #a566ff;
+}
+
+
+/* Icons in the right section */
+.nav-right .user-icon,
+.nav-right .cart-icon {
+    margin-right: 8px;
+    border-radius: 50%;
+    padding: 4px; /*Reduced size of icon padding */
+    color: #6c33a3; /* Bright glowing cyan */
+    background: white; /* Light glowing cyan background */
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-right .user-icon {
+    font-size: 1.3rem;
+    padding: 4px;
+}
+
+.nav-right .cart-icon {
+    font-size: 1.3rem;
+    padding: 4px;
+    padding-right: 6px;
+}
+
+/* all below only for logout Ensure the dropdown content for the "Welcome" menu matches the width of the "Welcome" link */
+.nav-right .drop {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-right: 10px; */
+}
+
+/* Dropdown content */
+.nav-right .drop-content {
+    min-width: auto;
+    display: none;
+    position: absolute;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Purple gradient */
+    border: 1px solid rgba(76, 215, 208, 0.3); /* Transparent cyan border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+    width: 85%; /* Make the width auto to match the content */
+    overflow: hidden; /* Prevents the hover effect from spilling out */
+    padding-right: 28px;
+    padding-bottom: 5px;
+}
+
+/* Show dropdown content on hover */
+.nav-right .drop:hover .drop-content {
+    display: block;
+}
+
+/* Links inside the dropdown */
+.nav-right .drop-content a {
+    color: #4cd7d0 !important; /* Cyan text */
+    padding: 12px 20px; /* Padding for the link */
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    width: 100%; /* Ensure the link takes full width of dropdown */
+    box-sizing: border-box;
+}
+
+/* Hover effect for logout link */
+.nav-right .drop-content a:hover {
+    background: #6c33a3; /* Light purple on hover */
+    color: #fff; /* White text */
+    padding-right: 20px; /* Adds right padding on hover */
+}
+
+/* Styling for the Welcome link */
+.nav-right .drop a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px; /* Matching padding as the dropdown link */
+    width: 100%; /* Ensures it takes up the same width */
+    box-sizing: border-box;
+    color: #fff;
+    
+}
+
+/* Hover effect for the Welcome link */
+.nav-right .drop a:hover {
+    color: #fff;
+    background-color: #a566ff;
+}
+
+
+/* Search Bar */
+.search-bar {
+    display: flex; /* Aligns input and button horizontally */
+    align-items: stretch; /* Ensures both input and button stretch to the same height */
+    gap: 5px; /* Adds a small gap between the input and the button */
+    height: 40px; /* Fixed height */
+    max-width: 300px; /* Adjust the width for the search bar */
+    flex-grow: 1; /* Allows it to expand */
+}
+
+/* Ensure form stays inside search-bar */
+.search-bar form {
+    display: flex; /* This makes the form a flex container */
+    margin: 0; /* Removes any extra margin */
+    padding: 0; /* Removes padding */
+    width: 100%; /* Ensures the form fills up its container */
+}
+
+/* Input field inside the search bar */
+.search-bar input {
+    flex-grow: 1; /* Ensures input takes available space */
+    padding: 8px 12px; /* Padding for input */
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Rounded corners for the left side */
+    font-size: 16px;
+    height: 100%; /* Ensures the input takes full height */
+    box-sizing: border-box; /* Ensures proper width calculation */
+    position:initial;
+}
+
+/* Button inside the search bar */
+.search-bar button {
+    padding: 8px 12px; /* Padding for button */
+    background-color: #6c33a3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; /* Rounded corners for the right side */
+    font-size: 16px;
+    height: 100%; /* Makes sure the button height matches input height */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Align icon in the center */
+    margin-top: 0;
+    }
+
+/* Ensure button icon is properly centered */
+.search-bar button i {
+    font-size: 18px; /* Adjust icon size */
+    margin: 0; /* Ensure no space around the icon */
+}
+
+.search-bar button:hover {
+    background-color: #b668ff;
+}
+/* General styles for responsiveness */ 
+@media (max-width: 1024px) { /* For tablets */
+    nav {
+        flex-wrap: wrap; /* Wrap content for smaller screens */
+        padding: 10px 15px;
+        position: absolute;
+        width: 95.9%;
+
+    }
+
+    .nav-center {
+        flex-direction: column; /* Stack navigation links */
+        align-items: center;
+        gap: 10px; /* Add spacing between items */
+    }
+
+    .nav-right {
+        flex-wrap: wrap; /* Allow elements to wrap */
+        gap: 10px; /* Reduce spacing for smaller screens */
+    }
+
+    .search-bar {
+        max-width: 100%; /* Allow search bar to fill the width */
+        margin-top: 10px; /* Add spacing below nav */
+    }
+
+    .search-bar input {
+        font-size: 14px;
+    }
+
+    .search-bar button {
+        font-size: 14px;
+    }
+
+    .dropdown-content {
+        min-width: 100px; /* Adjust dropdown width for smaller screens */
+        font-size: 16px; /* Reduce font size */
+    }
+
+    .dropdown-content a {
+        padding: 10px; /* Adjust padding */
+    }
+    .main-block{
+        margin-top: 260px !important;
+    }
+   
+}
+
+@media (max-width: 768px) { /* For phones */
+    nav {
+        flex-direction: column; /* Stack everything vertically */
+        padding: 8px 10px;
+        position: absolute;
+        width: 95.9%;
+
+    }
+
+    nav > a {
+        margin-right: 0; /* Center-align the logo */
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .nav-center {
+        width: 100%; /* Take full width for links */
+        gap: 5px;
+    }
+
+    .nav-right {
+        flex-direction: column; /* Stack welcome and cart on the next line */
+        align-items: center; /* Center-align the elements */
+        width: 100%; /* Ensure they take up the full width */
+        gap: 10px; /* Maintain spacing between elements */
+    }
+
+    .search-bar {
+        flex-direction: row; /* Ensure input and button remain in a row */
+        width: auto; /* Limit width to content size */
+        margin: 0 auto; /* Center the search bar */
+    }
+    .search-bar input, 
+    .search-bar button {
+        width: auto; /* Ensure input and button do not stretch */
+        max-width: 100%; /* Prevent overflow */
+    }
+    
+    .dropdown-content {
+        min-width: 100%; /* Expand dropdown to fit smaller screens */
+        text-align: center; /* Center-align dropdown items */
+        font-size: 14px; /* Smaller font for phones */
+    }
+
+    .dropdown-content a {
+        padding: 8px 10px; /* Compact padding for dropdown links */
+    }
+    .main-block{
+        margin-top: 405px !important;
+    }
+   
+}
+
+@media (max-width: 480px) { /* For very small phones */
+    nav {
+        padding: 5px; /* Minimal padding */
+        position: absolute;
+        width: 95.9%;
+
+
+    }
+
+    .search-bar {
+        flex-direction: row; /* Input and button in a row */
+        width: auto; /* Keep it centered */
+        margin: 0 auto; /* Center the search bar */
+    }
+
+    .search-bar input, 
+    .search-bar button {
+        font-size: 12px; /* Further reduce size */
+        width: auto; /* Keep width minimal */
+    }
+
+    .nav-center a,
+    .dropdown-content a {
+        font-size: 12px; /* Smaller fonts for links */
+        padding: 6px 8px;
+    }
+
+    .nav-right {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-right .user-icon,
+    .nav-right .cart-icon {
+        font-size: 1rem; /* Reduce icon size */
+        padding: 3px;
+    }
+    .main-block{
+        margin-top: 405px !important;
+    }
+    
+}
+
+
+.main-block {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            margin-top: 65px;
+            background: linear-gradient(to bottom, #eae6f9, #e3f9f7); /* Soft lavender to light cyan */
+
+        }
+       
+        .product-block {
+            border: 2px solid #d4bff9; /* Soft lavender border */
+            background-color: white;  
+            box-shadow: 0 4px 8px rgba(108, 51, 163, 0.2); /* Subtle purple shadow */
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        
+            width: 250px;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Stacks children vertically */
+            justify-content: space-between; /* Ensures buttons stay aligned */
+            height: 100%; /* Ensures consistent height */
+        }
+        .product-block:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(108, 51, 163, 0.3); /* Elevated shadow */
+            border: 2px solid #7c30ff; /* Soft lavender border */
+
+        }
+        .product-block img {
+            width: 100%;
+            margin-bottom: 15px;
+            height: 250px;
+        }
+        .product-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #333;
+
+            min-height: 2.4em; /* Ensures enough space for two lines */
+            line-height: 1.2em; /* Controls spacing between lines */
+            overflow: hidden; /* Prevents overflow if text exceeds the space */
+        }
+        .price-section {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        .discount-price {
+            color: #e53935;
+            font-weight: bold;
+        }
+        .discount-percentage {
+            font-size: 0.9em;
+            color: green;
+            margin-left: 10px;
+        }
+        
+
+        .add-to-cart {
+            background: #ff5722;
+           
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .add-to-cart:hover {
+            background: #e64a19;
+        }
+
+
+
+
+
+
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-family: Arial, sans-serif; 
+            /* margin: 0; */
+        }
+
+        footer p {
+            margin: 0; 
+            font-size: 0.9rem;
+        }
+
+        .cart {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+            width: 40%;
+        }
+        #cartItems ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        #cartItems li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+        } 
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+
+        #billingReceipt {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 30%;
+            width: 40%;
+            padding: 20px;
+            border: 2px solid black;
+            background-color: #fff;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #receiptDetails {
+            margin: 20px 0;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        #billingReceipt button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #billingReceipt button:hover {
+            background-color: #45a049;
+        }
+
+        #billingReceipt button:last-of-type {
+            background-color: #f44336;
+        }
+
+        #billingReceipt button:last-of-type:hover {
+            background-color: #d32f2f;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+            display: none;  /* Hide by default */
+            z-index: 999;   /* Ensure it is above all other content */
+        } 
+
+        /* below from f-3 css task */
+        .total-container{
+            width: 100%;
+            height: 680px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            min-height: auto; /* Ensures it expands with content */
+             overflow: hidden; /*Ensures content is not clipped */
+        }
+
+        .main-container{
+            height: 80%;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-bottom: 2px solid white;
+        }
+
+        .foot-container{
+            height: 20%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        ul {
+            list-style: none;     /* new - Remove default bullets */
+            padding: 0px;
+        }
+
+        .div{
+            height: 90%;
+            font-size: 17px;
+            line-height: normal;
+        }
+
+        .img{
+            display: inline;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        #Techno {
+            line-height: 1.5;
+        }
+       
+        #subscribe{
+            position: relative;
+            bottom : 7px;
+            right: 1.5px;
+            height: 50px;
+            width: 30%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border: transparent;
+            background-color: red;
+            color: white;
+            font-size: 20px;
+        }
+
+        input{
+            height: 50px;
+            width: 70%;
+            position: relative;
+            bottom : 9.5px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: transparent;
+        }
+
+        #secure{
+            margin-bottom: 0;
+        }
+
+        #ssl{
+            position: relative;
+            right: 15px;
+        }
+
+        @media screen and (max-width: 1024px) {
+            
+
+            /* Adjust the features section */
+            .features {
+                flex-direction: column;
+                margin: 20px auto;
+                max-width: 800px;
+            }
+
+            .features div {
+                width: 80%;
+                margin: 10px 0;
+            }
+
+            .welcome {
+                padding: 20px 10px;
+            }
+
+            .welcome h2 {
+                font-size: 2.5rem;
+            }
+
+            .welcome p {
+                font-size: 1rem;
+            }
+
+            /* Footer adjustments for smaller screens */
+            .foot-container {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .foot-container div {
+                margin-bottom: 20px;
+            }
+
+            /* Adjust footer links and images */
+            footer {
+                font-size: 0.8rem;
+                padding: 15px;
+                width: 93.8%;
+            }
+
+            #ssl {
+                width: 100%;
+                max-width: 150px;
+            }
+            .total-container {
+        height: auto; /* Adjust height dynamically for smaller screens */
+        min-height: 650px; /* Adjust for a smoother transition on smaller devices */
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+        }
+
+        
+
+        @media screen and (max-width: 768px) {
+            
+            .features div {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .welcome h2 {
+                font-size: 2rem;
+            }
+
+            .welcome button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            .main-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align sections */
+        justify-content: flex-start; /* Align to the top */
+        height: auto; /* Dynamic height for all content */
+        width: 90%; /* Adjust width for small screens */
+    }
+
+    .div {
+        width: 100%; /* Full width for sections */
+        text-align: center; /* Center align text */
+        margin-bottom: 15px; /* Add spacing */
+    }
+
+    .footer-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align */
+        justify-content: flex-start; /* Align to top */
+        height: auto; /* Adjust dynamically */
+        width: 100%; /* Full width */
+    }
+
+    .img {
+        display: block; /* Ensure images remain visible */
+        margin: 10px auto; /* Center align */
+        max-width: 80%; /* Scale images */
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .total-container {
+        height: auto; /* Let it adjust dynamically on smaller screens */
+        min-height: 600px; /* Adjust as needed for mobile view */
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+    }
+        }
+
+/* Below for search results page */
+        .no-results {
+    text-align: center;
+    margin-top: 50px;
+    color: #555;
+}
+
+.no-results h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.no-results p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.back-to-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.back-to-home:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <!-- <nav> -->
+        <!-- Logo/Brand Name -->
+        <!-- <a style="font-size: xx-large; color: #e67e22;" href="{% url 'homes' %}"><img src="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" height="60px" width="60px">TechnoVerse</a> -->
+
+    <!-- Centered Navigation Links -->
+    <!-- <div class="nav-center">
+        <a href="{% url 'homes' %}">Home</a>
+        <a href="{% url 'abouts' %}">About Us</a>
+        <a href="{% url 'product_list' 'all' %}">Products</a> -->
+
+        <!-- Shop By Dropdown -->
+        <!-- <div class="dropdown">
+            <a href="#">Shop By</a>
+            <div class="dropdown-content">
+                <a href="{% url 'product_list' 'all' %}">All Items</a>
+                <a href="{% url 'product_list' 'phone' %}">Phones</a>
+                <a href="{% url 'product_list' 'watch' %}">Watches</a>
+                <a href="{% url 'product_list' 'tablet' %}">Tablets</a>
+            </div>
+        </div>
+
+        <a href="{% url 'contacts' %}">Contact Us</a>
+    </div> -->
+
+        <!-- Right-Side Navigation -->
+        <!-- <div class="nav-right"> -->
+            <!-- Account Login/Welcome Message -->
+            <!-- {% if user.is_authenticated %}
+            <div class="dropdown">
+                 <a href="#" class="nav-item nav-link"><span class="user-icon"><i class="fas fa-user"></i></span>Welcome {{user.username}}</a> -->
+            <!-- <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a> -->
+                <!-- <div class="dropdown-content">
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}" id="accountLogin">
+                <span class="user-icon"><i class="fas fa-user"></i></span>Account Login
+            </a>
+            {% endif %} -->
+
+
+            <!-- Cart Icon with Font Awesome -->
+            <!-- <a href="{% url 'carts' %}">
+                <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>Cart
+            </a>
+        </div>
+    </nav> -->
+
+    <nav>
+        <!-- Logo -->
+        <a class="TV" href="{% url 'homes' %}">
+            <img src="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" height="55px" width="55px" />
+            TechnoVerse
+        </a>
+    
+        <!-- Center Navigation Links -->
+        <div class="nav-center">
+            <a href="{% url 'homes' %}">Home</a>
+            <a href="{% url 'abouts' %}">About Us</a>
+            <a href="{% url 'product_list' 'all' %}">Products</a>
+            <div class="dropdown">
+                <a href="#">Shop By</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'product_list' 'all' %}">All Items</a>
+                    <a href="{% url 'product_list' 'phone' %}">Phones</a>
+                    <a href="{% url 'product_list' 'watch' %}">Watches</a>
+                    <a href="{% url 'product_list' 'tablet' %}">Tablets</a>
+                </div>
+            </div>
+            <a href="{% url 'contacts' %}">Contact Us</a>
+        </div>
+
+        <!-- <div class="search-bar">
+            <form method="get">
+                <input type="text" name="query" placeholder="Search for products..." />
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div> -->
+    
+        <!-- Right Section -->
+        <div class="nav-right">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <form action="{% url 'search_results' %}" method="GET">
+                    <input type="text" name="query" placeholder="Search for products..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+    
+            <!-- User Section -->
+            {% if user.is_authenticated %}
+            <div class="drop">
+                <a href="#">Welcome, {{ user.username }}</a>
+                <div class="drop-content">
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}">
+                <span class="user-icon"><i class="fas fa-user"></i></span>Account Login
+            </a>
+            {% endif %}
+    
+            <!-- Cart -->
+            <a href="{% url 'carts' %}">
+                <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>Cart
+            </a>
+        </div>
+    </nav>
+    
+    
+
+<div class="main-block">
+    {% if products %}
+
+    {% for product in products %}
+    <div class="product-block">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <div class="price-section">
+            <span class="original-price">₹{{ product.original_price }}</span>
+            <span class="discount-price">₹{{ product.discount_price }}</span>
+            <span class="discount-percentage">{{ product.discount_percentage }}</span>
+        </div>
+
+         <!-- Add to Cart Button -->
+        <!-- <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="button" onclick="addToCart('{{ product.id }}')" class="add-to-cart">Add to Cart</button>
+        </form> -->
+
+        <!-- <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="add-to-cart">Add to Cart</button>
+        </form> -->
+
+        <!-- Quantity Controls (Visible Only for Logged-In Users) -->
+        {% if request.user.is_authenticated %}
+        <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="button" onclick="addToCart('{{ product.id }}')" class="add-to-cart">Add to Cart</button>
+        </form>
+
+        <div class="quantity-section">
+            <!-- Decrease Quantity -->
+            <form action="{% url 'remove_from_cart' product.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="button" onclick="removeFromCart('{{ product.id }}')" class="quantity-btn">-</button>
+            </form>
+
+            <!-- Display Current Quantity -->
+            <span id="quantity-{{ product.id }}" class="quantity-display">
+                {{ cart_quantities|get_quantity:product.id }}
+            </span>
+            <!-- cart_quantities = {1: 1, 2: 1}          -> entire cart_quantities is 1 parameter(productid:quantity)
+                 product.id = 1                          -> this is another parameter coming from looping the products
+                 cart_quantities.get(1, 0)  # Returns 1  -> above filter i.e    {{ cart_quantities|get_quantity:product.id }}  
+                                                            its logic  i.e      return cart_quantities.get(product_id, 0)
+
+                                                            if product.id = 104 (not in cart) ,  Returns 0 (default value) -->
+                    
+
+
+            <!-- Increase Quantity -->
+            <form action="{% url 'add_to_cart' product.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="button" onclick="addToCart('{{ product.id }}')" class="quantity-btn">+</button>
+            </form>
+        </div>
+
+        {% else %}
+        <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="add-to-cart">Add to Cart</button>
+        </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="no-results">
+        <h2>No products found matching your search.</h2>
+        <p>Try using different keywords or explore our categories.</p>
+        <a href="{% url 'homes' %}" class="back-to-home">Back to Home</a>
+    </div>
+{% endif %}
+</div>
+
+<div class="total-container">
+    <main class="main-container">
+          <div class="div">
+            <h2>TechnoVerse</h2>
+            <ul id="Techno">
+                <li>Designed with passion by <b style="color: red;">Sri Swarna Kamal</b>,<br> bringing the latest electronic gadgets to your doorstep worldwide.</li><br>
+                <li>Explore a wide range of cutting-edge technology at TechnoVerse,<br> your trusted destination for innovation.</li><br>
+                <li>We are committed to delivering exceptional quality and service<br> to tech enthusiasts everywhere.</li><br>
+            </ul>
+            <h2>Our Newsletter</h2>
+            <p style="line-height: 1.5;">Subscribe our Newsletter to Receive the Latest News and<br>
+                 Exclusive offers Every Eeek.</p>
+            <input type="search"/><button id="subscribe">Subscribe</button>
+          </div>
+
+          <div class="div">
+                <h2>Help</h2>
+               <ul>
+                  <a href="#"><li>Track Your Order</li><br>
+                  <li>Frequently Asked Questions</li><br>
+                  <li>Returns</li><br>
+                  <li>Cancellations</li><br>
+                  <li>Payments</li><br>
+                  <li>Customer Care</li><br>
+                  <li>How Do I Redeem My Coupon</li></a>
+                </ul>
+          </div>
+
+          <div class="div">
+            <h2>Shop by</h2>
+            <ul>
+             <a href="#"><li>Men</li><br>
+              <li>Women</li><br>
+              <li>Kids</li><br>
+              <li>Indie</li><br>
+              <li>Stores</li><br>
+              <li>New Arrivals</li><br>
+              <li>Brand Directory</li><br>
+              <li>Home</li><br>
+              <li>Collections</li></a>
+            </ul>
+          </div>
+
+          <div class="div">
+            <h2>Follow Us</h2>
+            <ul>
+               <a href="#"><li>Facebook</li><br>
+                <li>Instagram-TechnoVerse</li><br>
+                <li>Twitter</li><br>
+                <li>Pinterest</li><br></a>
+              </ul>
+          </div>
+    </main>
+
+    <div class="foot-container">
+        <div>
+           <p>Payment methods</p>
+           <ul>
+            <li class="img"><image src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSED_hyOPq73HJoTgoblxMMZp83UnaRIBBW5FcfNkyvtb_HDwxB" height="50px" width="100px"/></li>
+            <li class="img"><image src="https://e7.pngegg.com/pngimages/506/310/png-clipart-logo-visa-3-d-secure-organization-font-visa-blue-text.png" height="50px" width="100px"/></li>
+            <li class="img"><image src="https://e7.pngegg.com/pngimages/169/1014/png-clipart-mastercard-logo-encapsulated-postscript-financial-services-mastercard-cdr-label.png" height="50px" width="100px"/></li>
+            <li class="img"><image src="https://png.pngtree.com/png-clipart/20210530/original/pngtree-online-shop-cash-on-delivery-icon-png-image_6364043.jpg" height="50px" width="100px"/></li>
+            <li class="img"><image src="https://static.wixstatic.com/media/d596f6_7431ec89651948d3a57b74b8c2cc801d~mv2.png/v1/fill/w_584,h_326,al_c,q_90,usm_0.66_1.00_0.01/d596f6_7431ec89651948d3a57b74b8c2cc801d~mv2.webp" height="50px" width="100px"/></li>
+        </ul>
+        </div>
+        <div>
+           <p id="secure">Secure Systems</p>
+           <image id="ssl" src="https://cdn.prod.website-files.com/6209ea99ee1f96af1bce7bee/648c16b40a5085a9f6c95255_256%20Bit.png" height="80px" width="150px"/>
+        </div>
+    </div>
+</div>
+
+
+    <footer>
+        <p>&copy; 2024 TechnoVerse. All Rights Reserved.</p>
+    </footer>
+
+
+    <script>
+        // JavaScript function to handle the add to cart functionality
+        function addToCart(productId) {
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
+            
+            // Generate the correct URL dynamically with the productId
+            const url = "{% url 'add_to_cart' 0 %}".replace('0', productId);
+    
+            // Send AJAX request to add the product to the cart
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken, // Pass CSRF token for security
+                    'X-Requested-With': 'XMLHttpRequest'  // Specify it's an AJAX request
+                },
+                body: JSON.stringify({}) // Send empty object for now, can include other data if needed
+            })
+            .then(response => response.json())  // Parse the response as JSON
+            .then(data => {
+                if (data.success) {
+                    // Update the quantity display with the updated quantity
+                    document.getElementById(`quantity-${productId}`).innerText = data.updated_quantity;
+                } else {
+                    console.error('Failed to add to cart');
+                }
+            })
+            .catch(error => console.error('Error:', error)); // Log any errors that occur
+        }
+        // Above JS Code Explanation:
+            // Get CSRF Token:
+            // It retrieves the CSRF token (csrfmiddlewaretoken) from the HTML to include in the request headers for security.
+
+
+            // Generate URL:
+            // It dynamically creates the URL for the add_to_cart view, replacing 0 with the specific productId.
+
+
+            // Send AJAX Request:
+            // It sends a POST request to the server using fetch, including:
+            // CSRF token for security.
+            // X-Requested-With header to indicate it's an AJAX request.
+
+
+            // Handle Server Response:
+            // Once the server responds with the updated quantity:
+            // If successful, the updated quantity is displayed in the UI (quantity-{productId} span).
+            // If it fails, an error is logged.
+
+
+
+    // Function to decrease product quantity in the cart
+    function removeFromCart(productId) {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        
+        const url = "{% url 'remove_from_cart' 0 %}".replace('0', productId);
+
+        // Send AJAX request to remove product from cart
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the quantity display with the updated quantity
+                document.getElementById(`quantity-${productId}`).innerText = data.updated_quantity;
+            } else {
+                console.error('Failed to remove from cart');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    </script>
+    
+    
+    
+</body>
+</html>

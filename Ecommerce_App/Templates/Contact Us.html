@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>TechnoVerse - Contact Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            background: linear-gradient(to bottom, #eae6f9, #e3f9f7); /* Soft lavender to light cyan */
+
+
+        }
+        /* Navbar Container */
+        nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 0px 15px; /* Reduced vertical padding for a tighter look */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for modern look */
+    background: linear-gradient(90deg, #6c33a3, #4cd7d0);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px; /* Perfect font size */
+    padding: 6px 12px; /* Reduced padding for tighter spacing */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    line-height: 1; /* Ensures minimal spacing inside the links */
+}
+
+nav a:hover {
+    color: #fff;
+    background-color: #a566ff;
+}
+
+/* Left Section: Logo */
+nav > a {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    font-size: 22px; /* Slightly larger for brand emphasis */
+    line-height: 1; /* Aligns logo text with nav items */
+}
+.TV{
+    font-size: xx-large;
+     color: #ff8800;
+}
+
+.TV:hover{
+    background-color: #00f5d4;
+    color: #6c33a3;
+}
+
+/* Center Section: Navigation Links */
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-center a,
+.nav-center .dropdown {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Purple gradient */
+    border: 1px solid rgba(76, 215, 208, 0.3); /* Transparent cyan border */
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    padding: 8px 25px; /* Compact padding for dropdown items */
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    color: #4cd7d0; /* Cyan text */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: #6c33a3; /* Light purple on hover */
+    color: #fff; /* White text */}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Right Section: User, Cart, and Search */
+.nav-right {
+    display: flex;
+    align-items: center; /* Ensures all elements align vertically */
+    gap: 15px; /* Adds consistent spacing between elements */
+}
+
+/* Links in the right section */
+.nav-right a {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    color: #fff;
+}
+.nav-right a:hover{
+    background-color: #a566ff;
+}
+
+
+/* Icons in the right section */
+.nav-right .user-icon,
+.nav-right .cart-icon {
+    margin-right: 8px;
+    border-radius: 50%;
+    padding: 4px; /*Reduced size of icon padding */
+    color: #6c33a3; /* Bright glowing cyan */
+    background: white; /* Light glowing cyan background */
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-right .user-icon {
+    font-size: 1.3rem;
+    padding: 4px;
+}
+
+.nav-right .cart-icon {
+    font-size: 1.3rem;
+    padding: 4px;
+    padding-right: 6px;
+}
+
+/* all below only for logout Ensure the dropdown content for the "Welcome" menu matches the width of the "Welcome" link */
+.nav-right .drop {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-right: 10px; */
+}
+
+/* Dropdown content */
+.nav-right .drop-content {
+    min-width: auto;
+    display: none;
+    position: absolute;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Purple gradient */
+    border: 1px solid rgba(76, 215, 208, 0.3); /* Transparent cyan border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+    width: 85%; /* Make the width auto to match the content */
+    overflow: hidden; /* Prevents the hover effect from spilling out */
+    padding-right: 28px;
+    padding-bottom: 5px;
+}
+
+/* Show dropdown content on hover */
+.nav-right .drop:hover .drop-content {
+    display: block;
+}
+
+/* Links inside the dropdown */
+.nav-right .drop-content a {
+    color: #4cd7d0 !important; /* Cyan text */
+    padding: 12px 20px; /* Padding for the link */
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    width: 100%; /* Ensure the link takes full width of dropdown */
+    box-sizing: border-box;
+}
+
+/* Hover effect for logout link */
+.nav-right .drop-content a:hover {
+    background: #6c33a3; /* Light purple on hover */
+    color: #fff; /* White text */
+    padding-right: 20px; /* Adds right padding on hover */
+}
+
+/* Styling for the Welcome link */
+.nav-right .drop a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px; /* Matching padding as the dropdown link */
+    width: 100%; /* Ensures it takes up the same width */
+    box-sizing: border-box;
+    color: #fff;
+    
+}
+
+/* Hover effect for the Welcome link */
+.nav-right .drop a:hover {
+    color: #fff;
+    background-color: #a566ff;
+}
+
+
+/* Search Bar */
+.search-bar {
+    display: flex; /* Aligns input and button horizontally */
+    align-items: stretch; /* Ensures both input and button stretch to the same height */
+    gap: 5px; /* Adds a small gap between the input and the button */
+    height: 40px; /* Fixed height */
+    max-width: 300px; /* Adjust the width for the search bar */
+    flex-grow: 1; /* Allows it to expand */
+}
+
+/* Ensure form stays inside search-bar */
+.search-bar form {
+    display: flex; /* This makes the form a flex container */
+    margin: 0; /* Removes any extra margin */
+    padding: 0; /* Removes padding */
+    width: 100%; /* Ensures the form fills up its container */
+}
+
+/* Input field inside the search bar */
+.search-bar input {
+    flex-grow: 1; /* Ensures input takes available space */
+    padding: 8px 12px; /* Padding for input */
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Rounded corners for the left side */
+    font-size: 16px;
+    height: 100%; /* Ensures the input takes full height */
+    box-sizing: border-box; /* Ensures proper width calculation */
+    position:initial;
+}
+
+/* Button inside the search bar */
+.search-bar button {
+    padding: 8px 12px; /* Padding for button */
+    background-color: #6c33a3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; /* Rounded corners for the right side */
+    font-size: 16px;
+    height: 100%; /* Makes sure the button height matches input height */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Align icon in the center */
+    margin-top: 0;
+    width: initial;
+    }
+
+/* Ensure button icon is properly centered */
+.search-bar button i {
+    font-size: 18px; /* Adjust icon size */
+    margin: 0; /* Ensure no space around the icon */
+}
+
+.search-bar button:hover {
+    background-color: #b668ff;
+}
+/* General styles for responsiveness */ 
+@media (max-width: 1024px) { /* For tablets */
+    nav {
+        flex-wrap: wrap; /* Wrap content for smaller screens */
+        padding: 10px 15px;
+        position: absolute;
+        width: 95.9%;
+
+    }
+
+    .nav-center {
+        flex-direction: column; /* Stack navigation links */
+        align-items: center;
+        gap: 10px; /* Add spacing between items */
+    }
+
+    .nav-right {
+        flex-wrap: wrap; /* Allow elements to wrap */
+        gap: 10px; /* Reduce spacing for smaller screens */
+    }
+
+    .search-bar {
+        max-width: 100%; /* Allow search bar to fill the width */
+        margin-top: 10px; /* Add spacing below nav */
+    }
+
+    .search-bar input {
+        font-size: 14px;
+    }
+
+    .search-bar button {
+        font-size: 14px;
+    }
+
+    .dropdown-content {
+        min-width: 100px; /* Adjust dropdown width for smaller screens */
+        font-size: 16px; /* Reduce font size */
+    }
+
+    .dropdown-content a {
+        padding: 10px; /* Adjust padding */
+    }
+    .form-container{
+        margin-top: 410px !important;
+    }
+   
+}
+
+@media (max-width: 768px) { /* For phones */
+    nav {
+        flex-direction: column; /* Stack everything vertically */
+        padding: 8px 10px;
+        position: absolute;
+        width: 95.9%;
+
+    }
+
+    nav > a {
+        margin-right: 0; /* Center-align the logo */
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .nav-center {
+        width: 100%; /* Take full width for links */
+        gap: 5px;
+    }
+
+    .nav-right {
+        flex-direction: column; /* Stack welcome and cart on the next line */
+        align-items: center; /* Center-align the elements */
+        width: 100%; /* Ensure they take up the full width */
+        gap: 10px; /* Maintain spacing between elements */
+    }
+
+    .search-bar {
+        flex-direction: row; /* Ensure input and button remain in a row */
+        width: auto; /* Limit width to content size */
+        margin: 0 auto; /* Center the search bar */
+    }
+    .search-bar input, 
+    .search-bar button {
+        width: auto; /* Ensure input and button do not stretch */
+        max-width: 100%; /* Prevent overflow */
+    }
+    
+    .dropdown-content {
+        min-width: 100%; /* Expand dropdown to fit smaller screens */
+        text-align: center; /* Center-align dropdown items */
+        font-size: 14px; /* Smaller font for phones */
+    }
+
+    .dropdown-content a {
+        padding: 8px 10px; /* Compact padding for dropdown links */
+    }
+    .form-container{
+        margin-top: 410px !important;
+    }
+   
+}
+
+@media (max-width: 480px) { /* For very small phones */
+    nav {
+        padding: 5px; /* Minimal padding */
+        position: absolute;
+        width: 95.9%;
+
+
+    }
+
+    .search-bar {
+        flex-direction: row; /* Input and button in a row */
+        width: auto; /* Keep it centered */
+        margin: 0 auto; /* Center the search bar */
+    }
+
+    .search-bar input, 
+    .search-bar button {
+        font-size: 12px; /* Further reduce size */
+        width: auto; /* Keep width minimal */
+    }
+
+    .nav-center a,
+    .dropdown-content a {
+        font-size: 12px; /* Smaller fonts for links */
+        padding: 6px 8px;
+    }
+
+    .nav-right {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-right .user-icon,
+    .nav-right .cart-icon {
+        font-size: 1rem; /* Reduce icon size */
+        padding: 3px;
+    }
+    .form-container{
+        margin-top: 410px !important;
+    }
+    
+}
+
+
+        .form-container {
+            width: 70%;
+            min-height: 90vh;
+            /* height: auto; */
+            display: grid;
+            grid-template-columns: 60% 40%;
+            grid-template-rows: auto auto auto;
+            margin-top: 90px;
+        }
+
+        .first {
+            grid-column: 1/3;
+        }
+
+        .second {
+            display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    background-color: rgb(219, 219, 219);
+    padding: 20px; /* Add padding to avoid text sticking to edges */
+    height: auto; /* Allow natural height expansion */
+    min-height: 500px; /* Ensure the contact form section has enough height */
+    border-top: 5px solid blue; /* Top border */
+            border-bottom: 5px solid blue; /* Bottom border */
+            border-left: 5px solid blue; /* Left border */
+            border-radius: 15px 0 0 15px; /* Rounded corners on left */
+            box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2),
+                        -6px 6px 6px rgba(0, 0, 0, 0.23); /* Shadow effect */
+        }
+        .third{
+            border-top: 5px solid blue; /* Top border */
+            border-bottom: 5px solid blue; /* Bottom border */
+            border-right: 5px solid blue; /* Right border */
+            border-radius: 0 15px 15px 0; /* Rounded corners on right */
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),
+                        6px 6px 6px rgba(0, 0, 0, 0.23); /* Shadow effect */
+        }
+
+        .four {
+            grid-column: 1/3;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            gap: 120px;
+            padding-top: 30px;
+        }
+
+        #cf {
+            text-align: center;
+            color: red;
+        }
+
+        iframe {
+            height: 100%;
+            width: 100%;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+
+        }
+
+        .common {
+            width: 100%;
+        }
+        #name {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sameinp {
+            width: 100%;
+            box-sizing: border-box;
+            height: 40px;
+            padding-left: 10px;
+        }
+
+        .samediv {
+            width: 48%;
+        }
+
+        h5 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 10px;
+            height: 100px;
+        }
+
+        button {
+            height: 40px;
+            padding-left: 10px;
+            width: 20%;
+            border-radius: 5px;
+            margin-top: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+
+        .iconscommon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 130px;
+        }
+
+        .iconscommon i {
+            font-size: 20px;
+            border-radius: 50px;
+            background-color: blue;
+            color: white;
+            padding: 15px;
+        }
+
+        .iconscommon a {
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+       
+        
+      
+
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-family: Arial, sans-serif; 
+
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+         /* below from f-3 css task */
+         .total-container{
+            width: 100%;
+            height: 685px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            min-height: auto; /* Ensures it expands with content */
+             overflow: hidden; /*Ensures content is not clipped */
+        }
+
+        .main-container{
+            height: 80%;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            color: white;
+            border-bottom: 2px solid white;
+        }
+
+        .foot-container{
+            height: 20%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        ul {
+            list-style: none;     /* new - Remove default bullets */
+            padding: 0px;
+        }
+
+        .div{
+            height: 90%;
+            font-size: 17px;
+            line-height: normal;
+        }
+
+        .img{
+            display: inline;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        #Techno {
+            line-height: 1.5;
+        }
+       
+        #subscribe{
+            position: relative;
+            right: 1.5px;
+            top: 2.5px;
+            height: 50px;
+            width: 30%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0 ;
+            border: transparent;
+            background-color: red;
+            color: white;
+            font-size: 20px;
+        }
+
+        input{
+            height: 50px;
+            width: 70%;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: transparent;
+        }
+
+        #secure{
+            margin-bottom: 0;
+        }
+
+        #ssl{
+            position: relative;
+            right: 15px;
+        }
+
+        form {
+            width: 85%;
+        }
+        
+        .commonhead{
+            width: 85%;
+        }
+
+
+        @media screen and (max-width: 1024px) {
+            /* Adjust navigation bar: Remove fixed positioning */
+            .form-container {
+                width: 90%;
+            }
+            .four {
+                gap: 60px;
+                justify-content: center;
+            }
+
+          
+
+            /* Adjust the features section */
+            .features {
+                flex-direction: column;
+                margin: 20px auto;
+                max-width: 800px;
+            }
+
+            .features div {
+                width: 80%;
+                margin: 10px 0;
+            }
+
+            .welcome {
+                padding: 20px 10px;
+            }
+
+            .welcome h2 {
+                font-size: 2.5rem;
+            }
+
+            .welcome p {
+                font-size: 1rem;
+            }
+
+            /* Footer adjustments for smaller screens */
+            .foot-container {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .foot-container div {
+                margin-bottom: 20px;
+            }
+
+            /* Adjust footer links and images */
+            footer {
+                font-size: 0.8rem;
+                padding: 15px;
+                width: 93.8%;
+
+            }
+
+            #ssl {
+                width: 100%;
+                max-width: 150px;
+            }
+            .total-container {
+        height: auto; /* Adjust height dynamically for smaller screens */
+        min-height: 650px; /* Adjust for a smoother transition on smaller devices */
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Stack navigation links vertically for very small screens */
+            .form-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto;
+            }
+
+            .first {
+                grid-column: 1;
+            }
+
+            .second {
+                grid-column: 1;
+            }
+
+            .four {
+                grid-column: 1;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            #name {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .samediv {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+            iframe {
+                height: 400px;
+                margin-bottom: 20px; /* Add margin-bottom for gap between map and address icon */
+                width: 100%; /* Ensure it takes the full width */
+            }
+            .four {
+                gap: 20px;
+                align-items: center;
+                margin-top: 2px;
+                flex-direction: column; /* Ensure items are stacked vertically */
+            }
+         
+
+
+
+           
+
+            .features div {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .welcome h2 {
+                font-size: 2rem;
+            }
+
+            .welcome button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            .main-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align sections */
+        justify-content: flex-start; /* Align to the top */
+        height: auto; /* Dynamic height for all content */
+        width: 90%; /* Adjust width for small screens */
+    }
+
+    .div {
+        width: 100%; /* Full width for sections */
+        text-align: center; /* Center align text */
+        margin-bottom: 15px; /* Add spacing */
+    }
+
+    .footer-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align */
+        justify-content: flex-start; /* Align to top */
+        height: auto; /* Adjust dynamically */
+        width: 100%; /* Full width */
+    }
+
+    .img {
+        display: block; /* Ensure images remain visible */
+        margin: 10px auto; /* Center align */
+        max-width: 80%; /* Scale images */
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .total-container {
+        height: auto; /* Let it adjust dynamically on smaller screens */
+        min-height: 600px; /* Adjust as needed for mobile view */
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+    }     
+        }
+
+        @media (max-width: 480px) {
+            h1, h2 {
+                font-size: 1.2rem;
+            }
+
+            .iconscommon i {
+                font-size: 16px;
+                padding: 20px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- Logo -->
+        <a class="TV" href="{% url 'homes' %}">
+            <img src="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" height="55px" width="55px" />
+            TechnoVerse
+        </a>
+    
+        <!-- Center Navigation Links -->
+        <div class="nav-center">
+            <a href="{% url 'homes' %}">Home</a>
+            <a href="{% url 'abouts' %}">About Us</a>
+            <a href="{% url 'product_list' 'all' %}">Products</a>
+            <div class="dropdown">
+                <a href="#">Shop By</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'product_list' 'all' %}">All Items</a>
+                    <a href="{% url 'product_list' 'phone' %}">Phones</a>
+                    <a href="{% url 'product_list' 'watch' %}">Watches</a>
+                    <a href="{% url 'product_list' 'tablet' %}">Tablets</a>
+                </div>
+            </div>
+            <a href="{% url 'contacts' %}">Contact Us</a>
+        </div>
+
+        <!-- <div class="search-bar">
+            <form method="get">
+                <input type="text" name="query" placeholder="Search for products..." />
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div> -->
+    
+        <!-- Right Section -->
+        <div class="nav-right">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <form action="{% url 'search_results' %}" method="GET">
+                    <input type="text" name="query" placeholder="Search for products..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+    
+            <!-- User Section -->
+            {% if user.is_authenticated %}
+            <div class="drop">
+                <a href="#">Welcome, {{ user.username }}</a>
+                <div class="drop-content">
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}">
+                <span class="user-icon"><i class="fas fa-user"></i></span>Account Login
+            </a>
+            {% endif %}
+    
+            <!-- Cart -->
+            <a href="{% url 'carts' %}">
+                <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>Cart
+            </a>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <div class="first">
+            <h1 id="cf">Contact Us</h1>
+        </div>
+        
+
+        <div class="second">
+            <div class="commonhead">
+                <h2>Contact Us</h2>
+            </div>
+
+            <form method="POST" onsubmit="alert('Your Details have been Submitted Successfully')">
+                {% csrf_token %}
+            
+                <div class="common" id="name">
+                    <div class="samediv">
+                        <h5>FULL NAME</h5>
+                        <input required name="uname" class="sameinp" type="text" placeholder="Name"/>
+                    </div>
+                    <div class="samediv">
+                        <h5>EMAIL ADDRESS</h5>
+                        <input required name="umail" class="sameinp" type="email" placeholder="Email"/>
+                    </div>
+                </div>
+
+                <div class="common">
+                    <h5>SUBJECT</h5>
+                    <input required name="usub" class="sameinp" type="text" placeholder="Subject"/>
+                </div>
+
+                <div class="common">
+                    <h5>MESSAGE</h5>
+                    <textarea required name="umess" placeholder="Message"></textarea>
+                </div>
+
+                <div class="common"> 
+                    <button type="submit">Send Message</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="third">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63826104.01249139!2d35.11872332956425!3d12.47392897354673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1735310169101!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="four">
+            <div class="iconscommon">
+                <i class="bi bi-geo-alt"></i>
+                <p style="color: black"><b style="color: black">Address:</b> McMurdo Station<br>
+                    Ross Island, Antarctica</p>
+                    
+            </div>
+
+            <div class="iconscommon">
+                <i class="bi bi-telephone"></i>
+                <p><b style="color: black">Phone:</b> <a style="color: blue;" href="#">+ 1235 2355 98</a></p>
+            </div>
+
+            <div class="iconscommon">
+                <i class="bi bi-envelope"></i>
+                <p><b style="color: black">Email:</b> <a style="color: blue;" href="#">info@TechnoVerse.com</a></p>
+            </div>
+
+            <div class="iconscommon">
+                <i class="bi bi-globe"></i>
+                <p><b style="color: black">Website:</b> <a style="color: blue;" href="{% url 'homes' %}">www.TechnoVerse.com</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="total-container">
+        <main class="main-container">
+              <div class="div">
+                <h2>TechnoVerse</h2>
+                <ul id="Techno">
+                    <li>Designed with passion by <b style="color: red;">Sri Swarna Kamal</b>,<br> bringing the latest electronic gadgets to your doorstep worldwide.</li><br>
+                    <li>Explore a wide range of cutting-edge technology at TechnoVerse,<br> your trusted destination for innovation.</li><br>
+                    <li>We are committed to delivering exceptional quality and service<br> to tech enthusiasts everywhere.</li><br>
+                </ul>
+                <h2>Our Newsletter</h2>
+                <p style="line-height: 1.5;">Subscribe our Newsletter to Receive the Latest News and<br>
+                     Exclusive offers Every Eeek.</p>
+                <input type="search"/><button id="subscribe">Subscribe</button>
+              </div>
+
+              <div class="div">
+                    <h2>Help</h2>
+                   <ul>
+                      <a href="#"><li>Track Your Order</li><br>
+                      <li>Frequently Asked Questions</li><br>
+                      <li>Returns</li><br>
+                      <li>Cancellations</li><br>
+                      <li>Payments</li><br>
+                      <li>Customer Care</li><br>
+                      <li>How Do I Redeem My Coupon</li></a>
+                    </ul>
+              </div>
+
+              <div class="div">
+                <h2>Shop by</h2>
+                <ul>
+                 <a href="#"><li>Men</li><br>
+                  <li>Women</li><br>
+                  <li>Kids</li><br>
+                  <li>Indie</li><br>
+                  <li>Stores</li><br>
+                  <li>New Arrivals</li><br>
+                  <li>Brand Directory</li><br>
+                  <li>Home</li><br>
+                  <li>Collections</li></a>
+                </ul>
+              </div>
+
+              <div class="div">
+                <h2>Follow Us</h2>
+                <ul>
+                   <a href="#"><li>Facebook</li><br>
+                    <li>Instagram-TechnoVerse</li><br>
+                    <li>Twitter</li><br>
+                    <li>Pinterest</li><br></a>
+                  </ul>
+              </div>
+        </main>
+
+        <div class="foot-container">
+            <div>
+               <p>Payment methods</p>
+               <ul>
+                <li class="img"><image src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSED_hyOPq73HJoTgoblxMMZp83UnaRIBBW5FcfNkyvtb_HDwxB" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://e7.pngegg.com/pngimages/506/310/png-clipart-logo-visa-3-d-secure-organization-font-visa-blue-text.png" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://e7.pngegg.com/pngimages/169/1014/png-clipart-mastercard-logo-encapsulated-postscript-financial-services-mastercard-cdr-label.png" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://png.pngtree.com/png-clipart/20210530/original/pngtree-online-shop-cash-on-delivery-icon-png-image_6364043.jpg" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://static.wixstatic.com/media/d596f6_7431ec89651948d3a57b74b8c2cc801d~mv2.png/v1/fill/w_584,h_326,al_c,q_90,usm_0.66_1.00_0.01/d596f6_7431ec89651948d3a57b74b8c2cc801d~mv2.webp" height="50px" width="100px"/></li>
+            </ul>
+            </div>
+            <div>
+               <p id="secure">Secure Systems</p>
+               <image id="ssl" src="https://cdn.prod.website-files.com/6209ea99ee1f96af1bce7bee/648c16b40a5085a9f6c95255_256%20Bit.png" height="80px" width="150px"/>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 TechnoVerse. All Rights Reserved.</p>
+    </footer>
+
+    
+    
+</body>
+</html>

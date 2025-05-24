@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnoVerse - Home</title>
+        <!-- Font Awesome CDN for icons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" rel="icon"/>
+
+
+    <style>
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1b0033, #22005c);
+            color: #fff;
+            /* font-family: 'Poppins', sans-serif; */
+            overflow-x: hidden;
+
+        }
+      
+        /* Navbar Container */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 0px 15px; /* Reduced vertical padding for a tighter look */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for modern look */
+    background: linear-gradient(90deg, #6c33a3, #4cd7d0);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px; /* Perfect font size */
+    padding: 6px 12px; /* Reduced padding for tighter spacing */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    line-height: 1; /* Ensures minimal spacing inside the links */
+}
+
+nav a:hover {
+    color: #fff;
+    background-color: #a566ff;
+}
+
+/* Left Section: Logo */
+nav > a {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    font-size: 22px; /* Slightly larger for brand emphasis */
+    line-height: 1; /* Aligns logo text with nav items */
+}
+.TV{
+    font-size: xx-large;
+     color: #ff8800;
+}
+
+.TV:hover{
+    background-color: #00f5d4;
+    color: #6c33a3;
+}
+
+/* Center Section: Navigation Links */
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-center a,
+.nav-center .dropdown {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Purple gradient */
+    border: 1px solid rgba(76, 215, 208, 0.3); /* Transparent cyan border */
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    padding: 8px 25px; /* Compact padding for dropdown items */
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    color: #4cd7d0; /* Cyan text */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: #6c33a3; /* Light purple on hover */
+    color: #fff; /* White text */}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Right Section: User, Cart, and Search */
+.nav-right {
+    display: flex;
+    align-items: center; /* Ensures all elements align vertically */
+    gap: 15px; /* Adds consistent spacing between elements */
+}
+
+/* Links in the right section */
+.nav-right a {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    color: #fff;
+}
+.nav-right a:hover{
+    background-color: #a566ff;
+}
+
+
+/* Icons in the right section */
+.nav-right .user-icon,
+.nav-right .cart-icon {
+    margin-right: 8px;
+    border-radius: 50%;
+    padding: 4px; /*Reduced size of icon padding */
+    color: #6c33a3; /* Bright glowing cyan */
+    background: white; /* Light glowing cyan background */
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-right .user-icon {
+    font-size: 1.3rem;
+    padding: 4px;
+}
+
+.nav-right .cart-icon {
+    font-size: 1.3rem;
+    padding: 4px;
+    padding-right: 6px;
+}
+
+/* all below only for logout Ensure the dropdown content for the "Welcome" menu matches the width of the "Welcome" link */
+.nav-right .drop {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-right: 10px; */
+}
+
+/* Dropdown content */
+.nav-right .drop-content {
+    min-width: auto;
+    display: none;
+    position: absolute;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Purple gradient */
+    border: 1px solid rgba(76, 215, 208, 0.3); /* Transparent cyan border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    border-radius: 5px;
+    width: 85%; /* Make the width auto to match the content */
+    overflow: hidden; /* Prevents the hover effect from spilling out */
+    padding-right: 28px;
+    padding-bottom: 5px;
+}
+
+/* Show dropdown content on hover */
+.nav-right .drop:hover .drop-content {
+    display: block;
+}
+
+/* Links inside the dropdown */
+.nav-right .drop-content a {
+    color: #4cd7d0 !important; /* Cyan text */
+    padding: 12px 20px; /* Padding for the link */
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    width: 100%; /* Ensure the link takes full width of dropdown */
+    box-sizing: border-box;
+}
+
+/* Hover effect for logout link */
+.nav-right .drop-content a:hover {
+    background: #6c33a3; /* Light purple on hover */
+    color: #fff; /* White text */
+    padding-right: 20px; /* Adds right padding on hover */
+}
+
+/* Styling for the Welcome link */
+.nav-right .drop a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px; /* Matching padding as the dropdown link */
+    width: 100%; /* Ensures it takes up the same width */
+    box-sizing: border-box;
+    color: #fff;
+    
+}
+
+/* Hover effect for the Welcome link */
+.nav-right .drop a:hover {
+    color: #fff;
+    background-color: #a566ff;
+}
+
+
+/* Search Bar */
+.search-bar {
+    display: flex; /* Aligns input and button horizontally */
+    align-items: stretch; /* Ensures both input and button stretch to the same height */
+    gap: 5px; /* Adds a small gap between the input and the button */
+    height: 40px; /* Fixed height */
+    max-width: 300px; /* Adjust the width for the search bar */
+    flex-grow: 1; /* Allows it to expand */
+}
+
+/* Ensure form stays inside search-bar */
+.search-bar form {
+    display: flex; /* This makes the form a flex container */
+    margin: 0; /* Removes any extra margin */
+    padding: 0; /* Removes padding */
+    width: 100%; /* Ensures the form fills up its container */
+}
+
+/* Input field inside the search bar */
+.search-bar input {
+    flex-grow: 1; /* Ensures input takes available space */
+    padding: 8px 12px; /* Padding for input */
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Rounded corners for the left side */
+    font-size: 16px;
+    height: 100%; /* Ensures the input takes full height */
+    box-sizing: border-box; /* Ensures proper width calculation */
+    position:initial;
+}
+
+/* Button inside the search bar */
+.search-bar button {
+    padding: 8px 12px; /* Padding for button */
+    background-color: #6c33a3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; /* Rounded corners for the right side */
+    font-size: 16px;
+    height: 100%; /* Makes sure the button height matches input height */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Align icon in the center */
+    margin-top: 0;
+    }
+
+/* Ensure button icon is properly centered */
+.search-bar button i {
+    font-size: 18px; /* Adjust icon size */
+    margin: 0; /* Ensure no space around the icon */
+}
+
+.search-bar button:hover {
+    background-color: #b668ff;
+}
+/* General styles for responsiveness */ 
+@media (max-width: 1024px) { /* For tablets */
+    nav {
+        flex-wrap: wrap; /* Wrap content for smaller screens */
+        padding: 10px 15px;
+        position: absolute;
+        width: 95.9%;
+
+    }
+
+    .nav-center {
+        flex-direction: column; /* Stack navigation links */
+        align-items: center;
+        gap: 10px; /* Add spacing between items */
+    }
+
+    .nav-right {
+        flex-wrap: wrap; /* Allow elements to wrap */
+        gap: 10px; /* Reduce spacing for smaller screens */
+    }
+
+    .search-bar {
+        max-width: 100%; /* Allow search bar to fill the width */
+        margin-top: 10px; /* Add spacing below nav */
+    }
+
+    .search-bar input {
+        font-size: 14px;
+    }
+
+    .search-bar button {
+        font-size: 14px;
+    }
+
+    .dropdown-content {
+        min-width: 100px; /* Adjust dropdown width for smaller screens */
+        font-size: 16px; /* Reduce font size */
+    }
+
+    .dropdown-content a {
+        padding: 10px; /* Adjust padding */
+    }
+    .hero{
+        margin-top: 400px !important;
+    }
+   
+}
+
+@media (max-width: 768px) { /* For phones */
+    nav {
+        flex-direction: column; /* Stack everything vertically */
+        padding: 8px 10px;
+        position: absolute;
+        width: 95.9%;
+
+    }
+
+    nav > a {
+        margin-right: 0; /* Center-align the logo */
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .nav-center {
+        width: 100%; /* Take full width for links */
+        gap: 5px;
+    }
+
+    .nav-right {
+        flex-direction: column; /* Stack welcome and cart on the next line */
+        align-items: center; /* Center-align the elements */
+        width: 100%; /* Ensure they take up the full width */
+        gap: 10px; /* Maintain spacing between elements */
+    }
+
+    .search-bar {
+        flex-direction: row; /* Ensure input and button remain in a row */
+        width: auto; /* Limit width to content size */
+        margin: 0 auto; /* Center the search bar */
+    }
+    .search-bar input, 
+    .search-bar button {
+        width: auto; /* Ensure input and button do not stretch */
+        max-width: 100%; /* Prevent overflow */
+    }
+    
+    .dropdown-content {
+        min-width: 100%; /* Expand dropdown to fit smaller screens */
+        text-align: center; /* Center-align dropdown items */
+        font-size: 14px; /* Smaller font for phones */
+    }
+
+    .dropdown-content a {
+        padding: 8px 10px; /* Compact padding for dropdown links */
+    }
+    .hero{
+        margin-top: 400px !important;
+    }
+   
+}
+
+@media (max-width: 480px) { /* For very small phones */
+    nav {
+        padding: 5px; /* Minimal padding */
+        position: absolute;
+        width: 95.9%;
+
+
+    }
+
+    .search-bar {
+        flex-direction: row; /* Input and button in a row */
+        width: auto; /* Keep it centered */
+        margin: 0 auto; /* Center the search bar */
+    }
+
+    .search-bar input, 
+    .search-bar button {
+        font-size: 12px; /* Further reduce size */
+        width: auto; /* Keep width minimal */
+    }
+
+    .nav-center a,
+    .dropdown-content a {
+        font-size: 12px; /* Smaller fonts for links */
+        padding: 6px 8px;
+    }
+
+    .nav-right {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-right .user-icon,
+    .nav-right .cart-icon {
+        font-size: 1rem; /* Reduce icon size */
+        padding: 3px;
+    }
+    .hero{
+        margin-top: 400px !important;
+    }
+    
+}
+
+     /* Hero Section */
+     .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/6d2c5b68-1c8c-4b44-b184-d90a0d7beab4/d5b2d3f1-ca9e-4d70-80e5-a43e5680ee37.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero a {
+            background: #6c33a3;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .hero a:hover {
+            transform: scale(1.1);
+            background: #4cd7d0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        } 
+
+/* Categories Section */
+.categories {
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, #22005c, #1b0033);  /* Keep gradient */
+}
+
+.categories h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00f5d4;
+}
+
+.categories .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.category-card {
+    background: #6e4f86;  /* Muted grayish purple for subtle contrast */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+}
+
+.category-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.category-card h3 {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    background: #00b3b3;  /* Deep cyan for heading */
+    color: #fff;
+    margin: 0;
+}
+
+.category-card a {
+    display: inline-block;
+    background: #5f33a1;  /* Darker purple for the button */
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.category-card a:hover {
+    background: #00d3d3;  /* Light cyan on hover */
+    transform: scale(1.1);
+}
+
+/* Featured Products Section */
+.featured-products {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to bottom, #3c096c, #240046); /* Dark purple gradient */
+
+}
+
+.featured-products h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #00f5d4; /* Cyan color for the heading */
+    font-weight: bold;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.product {
+    background-color: rgba(255, 255, 255, 0.08); /* Subtle white overlay */
+    border-radius: 15px;
+    border: 1px solid rgba(0, 245, 212, 0.2); /* Cyan border with transparency */
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Adds depth */
+    padding: 1.5rem;
+    flex: 1 1 calc(33.333% - 2rem); /* Flex items take up ~33% of container width */
+    max-width: 300px; /* Ensures uniform product sizes */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-10px); /* Hover effect */
+    box-shadow: 0 10px 25px rgba(0, 245, 212, 0.4); /* Cyan glow effect */
+}
+
+.product img {
+    width: 100%;
+    height: 45%;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Adds subtle depth to images */
+}
+
+.product h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00f5d4; /* Cyan for product names */
+
+}
+
+.product p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: #d9d9d9; /* Light gray text for better readability */
+    text-align: center;
+}
+
+.product button {
+    color: white;
+    background: linear-gradient(to right, #00f5d4, #3c096c); /* Cyan to purple gradient */
+
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.product button:hover {
+    background: linear-gradient(to left, #00f5d4, #3c096c); /* Reverse gradient on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Media Queries */
+/* Medium Screens (Tablets: 768px to 991px) */
+@media (max-width: 991px) {
+    .product-container {
+        gap: 1.5rem;
+    }
+
+    .product {
+        flex: 1 1 calc(50% - 1rem); /* Two products per row */
+    }
+
+    .featured-products h2 {
+        font-size: 2rem;
+    }
+
+    .product h3 {
+        font-size: 1.3rem;
+    }
+
+    .product button {
+        font-size: 0.9rem; /* Slightly smaller button text */
+    }
+}
+
+/* Small Screens (Mobile: 576px to 767px) */
+@media (max-width: 767px) {
+    .product-container {
+        gap: 1rem;
+    }
+
+    .product {
+        flex: 1 1 100%; /* Full width for each product */
+    }
+
+    .featured-products h2 {
+        font-size: 1.8rem; /* Smaller heading */
+    }
+
+    .product h3 {
+        font-size: 1.2rem;
+    }
+
+    .product p {
+        font-size: 0.9rem;
+        line-height: 1.4; /* Better readability on smaller screens */
+    }
+
+    .product button {
+        font-size: 0.85rem;
+        padding: 0.4rem 1.2rem; /* Adjust button size */
+    }
+}
+
+/* Extra Small Screens (Very Small Mobile: below 576px) */
+@media (max-width: 575px) {
+    .featured-products {
+        padding: 3rem 1rem; /* Reduce padding for smaller screens */
+    }
+
+    .product-container {
+        gap: 0.8rem;
+    }
+
+    .product h3 {
+        font-size: 1.1rem;
+    }
+
+    .product p {
+        font-size: 0.85rem;
+    }
+
+    .product button {
+        font-size: 0.8rem;
+        padding: 0.3rem 1rem; /* Smaller buttons */
+    }
+}
+
+
+/* Features Section Styling */
+.features {
+    background: linear-gradient(135deg, #22005c, #1b0033);
+    padding: 50px 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    /* margin-bottom: 30px; */
+    /* letter-spacing: 2px; */
+    color: #00f5d4; /* Cyan for product names */
+
+    margin-bottom: 2rem;
+    font-weight: bold;
+
+}
+
+.features .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature-card {
+    background: #5e2a88;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    border-radius: 12px;
+    padding: 20px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card img {
+    width: 350px;
+    height: 250px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Border around images */
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    color: #00f5d4; /* Cyan for product names */
+    font-weight: 600;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #e0e0e0; /* Subtle contrast for text */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Customer Testimonials */
+.testimonials {
+    padding: 6rem 3rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1b0033, #22005c);
+}
+
+.testimonials h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #00f5d4; /* Cyan for product names */
+}
+
+.testimonial-container {
+    display: grid; /* Use grid layout for better row and column control */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 30px; /* Space between items */
+    justify-items: center; /* Center items horizontally */
+}
+
+.testimonial {
+    background: #6c33a3;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    /* padding: 20px; */
+    width: 250px; /* Fixed width for each testimonial */
+    text-align: left; /* Align text to the left for better readability */
+}
+
+.testimonial:hover{
+    transform: scale(1.05);
+}
+
+.testimonial p {
+    font-size: 1rem;
+    color: white;
+    margin: 0 0 10px; /* Add spacing between the text and the name */
+}
+
+.testimonial span {
+    display: block;
+    font-size: 0.9rem;
+    color: #00f5d4; /* Cyan for product names */
+
+}
+/* Large Screens (Desktops, Laptops) */
+@media (min-width: 1024px) {
+    .testimonial-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+        gap: 30px; /* Maintain spacing */
+    }
+
+    .testimonial {
+        width: 300px; /* Slightly larger testimonials for better readability */
+    }
+}
+
+/* Medium Screens (Tablets) */
+@media (max-width: 1024px) {
+    .testimonial-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+        gap: 20px; /* Reduce spacing for smaller screens */
+    }
+
+    .testimonial {
+        width: 80%; /* Adjust width for better fit */
+        text-align: center; /* Center-align text for a cleaner look */
+    }
+
+    .testimonials h2 {
+        font-size: 1.8rem; /* Slightly smaller heading */
+    }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 768px) {
+    .testimonial-container {
+        grid-template-columns: 1fr; /* Single-column layout for small screens */
+        gap: 15px; /* Further reduce spacing */
+    }
+
+    .testimonial {
+        width: 90%; /* Adjust width for smaller screens */
+        margin: 0 auto; /* Center the testimonials */
+    }
+
+    .testimonials h2 {
+        font-size: 1.5rem; /* Smaller heading for phones */
+    }
+
+    .testimonial p {
+        font-size: 0.95rem; /* Reduce font size for better readability */
+    }
+
+    .testimonial span {
+        font-size: 0.85rem; /* Smaller name text */
+    }
+}
+
+/* Very Small Screens (Compact Phones) */
+@media (max-width: 480px) {
+    .testimonial-container {
+        grid-template-columns: 1fr; /* Maintain single-column layout */
+        gap: 10px; /* Compact spacing */
+    }
+
+    .testimonial {
+        width: 95%; /* Maximize width for very small screens */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .testimonials h2 {
+        font-size: 1.2rem; /* Smaller heading */
+    }
+
+    .testimonial p {
+        font-size: 0.9rem; /* Further reduce font size */
+    }
+
+    .testimonial span {
+        font-size: 0.8rem; /* Smaller name text */
+    }
+}
+
+
+
+/* About Us Section */
+.about-us {
+    width: 100%;
+    background: linear-gradient(135deg, #22005c, #1b0033);
+    padding: 6rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+    padding: 1rem;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.about-content {
+    flex: 1;
+    padding: 1rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;  /* Ensure items are stacked vertically */
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #4cd7d0;
+    margin-top: 0;
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.about-content a{
+            background: #6c33a3;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            margin-top: 1.5rem;
+            display: block;  /* Make anchor tag a block element */
+            width: 40%;
+            text-align: center;
+}
+
+.about-content a:hover{
+    transform: scale(1.1);
+    background: #4cd7d0;
+}
+
+
+
+/* Contact Us Section */
+.contact-us {
+    width: 100%;
+    background: linear-gradient(135deg, #1b0033, #22005c);
+    padding: 6rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    max-width: 1200px;
+    gap: 2rem;
+    align-items: center;
+}
+
+.contact-image {
+    flex: 1;
+    padding: 1rem;
+}
+
+.contact-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-content {
+    flex: 1;
+    padding: 1rem;
+    color: #fff;
+}
+
+.contact-content a{
+    background: #6c33a3;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            margin-top: 1.5rem;
+            display: block;  /* Make anchor tag a block element */
+            width: 40%;
+            text-align: center;
+}
+
+.contact-content a:hover{
+    transform: scale(1.1);
+    background: #4cd7d0;
+}
+
+.contact-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #4cd7d0;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+/* Shared Container Styling for Both Sections */
+.about-container,
+.contact-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background */
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+
+/* Media Queries for Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    /* About Us Section */
+    .about-us {
+        padding: 4rem 1.5rem; /* Adjust padding for smaller screens */
+        width: 90%;
+
+    }
+
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .about-image, .about-content {
+        width: 90%; /* Ensure elements are centered and fit within the screen */
+    }
+
+    .about-content h2 {
+        font-size: 2rem; /* Adjust heading size */
+    }
+
+    .about-content p {
+        font-size: 1rem; /* Reduce text size */
+    }
+
+    .about-content a {
+        width: 80%; /* Center the button */
+        font-size: 1rem;
+    }
+
+    .about-image img {
+        border-radius: 10px; /* Adjust image styling */
+    }
+
+    /* Contact Us Section */
+    .contact-us {
+        padding: 4rem 1.5rem; /* Adjust padding for smaller screens */
+        width: 90%;
+    }
+
+    .contact-container {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .contact-image, .contact-content {
+        width: 90%; /* Ensure elements are centered and fit within the screen */
+    }
+
+    .contact-content h2 {
+        font-size: 2rem; /* Adjust heading size */
+    }
+
+    .contact-content p {
+        font-size: 1rem; /* Reduce text size */
+    }
+
+    .contact-content a {
+        width: 80%; /* Center the button */
+        font-size: 1rem;
+    }
+
+    .contact-image img {
+        border-radius: 10px; /* Adjust image styling */
+    }
+}
+
+/* Media Queries for Phones (max-width: 480px) */
+@media (max-width: 480px) {
+    /* About Us Section */
+    .about-us {
+        padding: 3rem 1rem; /* Reduce padding further for phones */
+    }
+
+    .about-container {
+        gap: 1rem; /* Reduce spacing between elements */
+    }
+
+    .about-content h2 {
+        font-size: 1.8rem; /* Further reduce heading size */
+    }
+
+    .about-content p {
+        font-size: 0.9rem; /* Adjust text size */
+    }
+
+    .about-content a {
+        width: 100%; /* Button spans full width */
+        font-size: 0.9rem;
+    }
+
+    .about-image img {
+        width: 100%; /* Ensure image is responsive */
+        height: auto;
+    }
+
+    /* Contact Us Section */
+    .contact-us {
+        padding: 3rem 1rem; /* Reduce padding further for phones */
+    }
+
+    .contact-container {
+        gap: 1rem; /* Reduce spacing between elements */
+    }
+
+    .contact-content h2 {
+        font-size: 1.8rem; /* Further reduce heading size */
+    }
+
+    .contact-content p {
+        font-size: 0.9rem; /* Adjust text size */
+    }
+
+    .contact-content a {
+        width: 100%; /* Button spans full width */
+        font-size: 0.9rem;
+    }
+
+    .contact-image img {
+        width: 100%; /* Ensure image is responsive */
+        height: auto;
+    }
+}
+
+
+        /* .welcome {
+            text-align: center;
+            background-color: #2a07ee;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 50px;
+            background: transparent;
+            font-family: Arial, sans-serif; 
+
+        }
+
+        .welcome h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .welcome button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .welcome button:hover {
+            background-color: #e67e22;
+        } */
+
+
+
+        /* Below for Features */
+        /* .features {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin: 50px auto;
+            max-width: 1200px;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+
+        }
+
+        .features div {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            background-color: rgb(207, 47, 47);
+
+        }
+
+        .features div h3 {
+            color: white;
+        }
+
+        .features div img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        } */
+
+        /* .featured-products {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .featured-products h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 30px;
+            text-decoration: underline;
+        } */
+ 
+
+
+
+
+
+
+
+
+
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-family: Arial, sans-serif; 
+
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* below from f-3 css task */
+        .total-container{
+            width: 100%;
+            height: 680px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            min-height: auto; /* Ensures it expands with content */
+             overflow: hidden; /*Ensures content is not clipped */
+        }
+
+        .main-container{
+            height: 80%;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-bottom: 2px solid white;
+        }
+
+        .foot-container{
+            height: 20%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        ul {
+            list-style: none;     /* new - Remove default bullets */
+            padding: 0px;
+        }
+
+        .div{
+            height: 90%;
+            font-size: 17px;
+            line-height: normal;
+        }
+
+        .img{
+            display: inline;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        #Techno {
+            line-height: 1.5;
+        }
+       
+        #subscribe{
+            position: relative;
+            right: 1.5px;
+            top: 2.5px;
+            height: 50px;
+            width: 30%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border: transparent;
+            background-color: red;
+            color: white;
+            font-size: 20px;
+        }
+
+        input{
+            height: 50px;
+            width: 70%;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: transparent;
+        }
+
+        #secure{
+            margin-bottom: 0;
+        }
+
+        #ssl{
+            position: relative;
+            right: 15px;
+        }
+
+        @media screen and (max-width: 1024px) {
+        
+            /* .welcome {
+                padding: 20px 10px;
+            }
+
+            .welcome h2 {
+                font-size: 2.5rem;
+            }
+
+            .welcome p {
+                font-size: 1rem;
+            } */
+
+            /* Footer adjustments for smaller screens */
+            .foot-container {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .foot-container div {
+                margin-bottom: 20px;
+            }
+
+            /* Adjust footer links and images */
+            footer {
+                font-size: 0.8rem;
+                padding: 15px;
+                width: 93.8%;
+
+            }
+
+            #ssl {
+                width: 100%;
+                max-width: 150px;
+            }
+            .total-container {
+        height: auto; /* Adjust height dynamically for smaller screens */
+        min-height: 650px; /* Adjust for a smoother transition on smaller devices */
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+        }
+
+        @media screen and (max-width: 768px) {
+            /* .welcome h2 {
+                font-size: 2rem;
+            }
+
+            .welcome button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            } */
+
+            .main-container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align sections */
+        justify-content: flex-start; /* Align to the top */
+        height: auto; /* Dynamic height for all content */
+        width: 90%; /* Adjust width for small screens */
+    }
+
+    .div {
+        width: 100%; /* Full width for sections */
+        text-align: center; /* Center align text */
+        margin-bottom: 15px; /* Add spacing */
+    }
+
+    .footer-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align */
+        justify-content: flex-start; /* Align to top */
+        height: auto; /* Adjust dynamically */
+        width: 100%; /* Full width */
+    }
+
+    .img {
+        display: block; /* Ensure images remain visible */
+        margin: 10px auto; /* Center align */
+        max-width: 80%; /* Scale images */
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .total-container {
+        height: auto; /* Let it adjust dynamically on smaller screens */
+        min-height: 600px; /* Adjust as needed for mobile view */
+    }
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+    }
+            }
+
+
+
+
+
+
+
+
+
+/* .product-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.product {
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product img {
+    width: 100%;
+    border-radius: 8px;
+    height: auto;
+}
+
+.product h3 {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.product p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #555;
+}  */
+
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <!-- Logo -->
+        <a class="TV" href="{% url 'homes' %}">
+            <img src="https://img.freepik.com/premium-photo/image-neon-t-icon_1057389-67775.jpg" height="55px" width="55px" />
+            TechnoVerse
+        </a>
+    
+        <!-- Center Navigation Links -->
+        <div class="nav-center">
+            <a href="{% url 'homes' %}">Home</a>
+            <a href="{% url 'abouts' %}">About Us</a>
+            <a href="{% url 'product_list' 'all' %}">Products</a>
+            <div class="dropdown">
+                <a href="#">Shop By</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'product_list' 'all' %}">All Items</a>
+                    <a href="{% url 'product_list' 'phone' %}">Phones</a>
+                    <a href="{% url 'product_list' 'watch' %}">Watches</a>
+                    <a href="{% url 'product_list' 'tablet' %}">Tablets</a>
+                </div>
+            </div>
+            <a href="{% url 'contacts' %}">Contact Us</a>
+        </div>
+
+    
+    
+        <!-- Right Section -->
+        <div class="nav-right">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <form action="{% url 'search_results' %}" method="GET">
+                    <input type="text" name="query" placeholder="Search for products..." />
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+    
+            <!-- User Section -->
+            {% if user.is_authenticated %}
+            <div class="drop">
+                <a href="#">Welcome, {{ user.username }}</a>
+                <div class="drop-content">
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}">
+                <span class="user-icon"><i class="fas fa-user"></i></span>Account Login
+            </a>
+            {% endif %}
+    
+            <!-- Cart -->
+            <a href="{% url 'carts' %}">
+                <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>Cart
+            </a>
+        </div>
+    </nav>
+    
+    <section style="font-family: 'Poppins', sans-serif;" class="hero">
+        <div>
+            <h2>Welcome to TechnoVerse</h2>
+            <p>Unleash the power of Innovation with our Latest Gadgets.</p>
+            <a href="{% url 'product_list' 'all' %}">Explore Now</a>
+        </div>
+    </section>
+
+        <!-- Categories Section -->
+    <section style="font-family: 'Poppins', sans-serif;" id="categories" class="categories">
+        <h2>Shop by Categories</h2>
+        <div class="grid">
+
+            <a href="{% url 'product_list' 'tablet' %}">
+            <div class="category-card">
+                <img src="https://heise.cloudimg.io/v7/_www-heise-de_/imgs/18/4/3/0/8/2/5/1/7e4b45964b9fb53eada4d501cecab82acd1491914456ecc37f9ec8f35d0b504f-6b7e6ad89990fb4c.gif?force_format=avif%2Cwebp%2Cjpeg&org_if_sml=1&q=30&width=1920" alt="Tablets">
+                <h3>Tablets</h3>
+            </div>
+            </a>
+
+            <a href="{% url 'product_list' 'phone' %}">
+            <div class="category-card">
+                <img src="https://www.gizchina.com/wp-content/uploads/images/2023/06/flagship-smartphones-2023.jpg" alt="Smart Phones">
+                <h3>Smart Phones</h3>
+            </div>
+            </a>
+
+            <a href="{% url 'product_list' 'watch' %}">
+            <div class="category-card">
+                <img src="https://cdn.mos.cms.futurecdn.net/P4kF4ZkALuGge8KRQgcJUY.jpg" alt="Smart Watches">
+                <h3>Smart Watches</h3>
+            </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+<section style="font-family: 'Poppins', sans-serif;" style="background-color: #0093E9;" class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="product-container">
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/71CXhVhpM0L._AC_UY327_FMwebp_QL65_.jpg" alt="Product 1">
+            <h3>Samsung Galaxy S24 Ultra</h3>
+            <p>"The Samsung Galaxy S24 Ultra offers a stunning 6.8-inch display, powerful performance, and a cutting-edge camera system for stunning photos and videos. Experience top-tier tech in a sleek design."</p>
+            <a href="{% url 'product_list' 'all' %}"><button>View Details</button></a>
+        </div>
+        <div class="product">
+            <img src="https://m.media-amazon.com/images/I/619oqSJVY5L._AC_UY327_FMwebp_QL65_.jpg" alt="Product 2">
+            <h3>iPhone 16 Pro Max</h3>
+            <p>"The iPhone 16 Pro Max delivers exceptional performance, an impressive 48MP camera, and a beautiful OLED display. It’s designed for those who demand the best in technology and style."</p>
+            <a href="{% url 'product_list' 'all' %}"><button>View Details</button></a>
+        </div>
+        <div class="product">
+            <img src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/m/p/j/-original-imah5mtpdzrutn3c.jpeg?q=70" alt="Product 3">
+            <h3>Google Pixel 9 Pro</h3>
+            <p>"The Google Pixel 9 Pro combines cutting-edge AI with a stunning camera for professional-grade photos, all powered by Google’s smooth and intuitive Android experience."</p>
+            <a href="{% url 'product_list' 'all' %}"><button>View Details</button></a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section style="font-family: 'Poppins', sans-serif;" id="features" class="features">
+    <h2>Our Features</h2>
+    <div class="grid">
+        <div class="feature-card">
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230718/pngtree-illustration-of-a-conceptual-electronic-device-network-in-3d-image_3907551.jpg" alt="Feature 1">
+            <h3>Wide Product Range</h3>
+            <p>From phones to smartwatches, find all your tech essentials in one place.</p>
+        </div>
+        <div class="feature-card">
+            <img src="https://a.storyblok.com/f/165154/1280x720/922b3e014d/01_fast-international-shipping-ecommerce.jpg/m/" alt="Feature 2">
+            <h3>Fast Worldwide Shipping</h3>
+            <p>Get your favorite gadgets delivered quickly, no matter where you are.</p>
+        </div>
+        <div class="feature-card">
+            <img src="https://cdn.prod.website-files.com/64a83d4453b353ae789d6387/6576f0995897f1db762833f2_23s.jpg" alt="Feature 3">
+            <h3>Exceptional Customer Support</h3>
+            <p>We’re here to help you every step of the way. Your satisfaction is our priority.</p>
+        </div>
+    </div>
+</section>
+
+ <!-- Customer Testimonials Section -->
+ <div style="font-family: 'Poppins', sans-serif;" style="background-color: #0093E9;" class="testimonials">
+    <h2>What Our Customers Are Saying</h2>
+    <div class="testimonial-container">
+        <!-- First Row of Testimonials -->
+        <div class="testimonial">
+            <p>"TechnoVerse is my go-to store for the latest gadgets. Excellent service and fast delivery!"</p>
+            <span>- Sarah J.</span>
+        </div>
+        <div class="testimonial">
+            <p>"I love the variety of products available. Their customer support is top-notch."</p>
+            <span>- Mike W.</span>
+        </div>
+        <div class="testimonial">
+            <p>"Amazing experience! The products are exactly as described, and delivery was super fast."</p>
+            <span>- Emily L.</span>
+        </div>
+
+        <!-- Second Row of Testimonials (Newly added) -->
+        <div class="testimonial">
+            <p>"I am always impressed with the quality of products. TechnoVerse never disappoints!"</p>
+            <span>- John D.</span>
+        </div>
+        <div class="testimonial">
+            <p>"Fast shipping and great prices! Will definitely be shopping here again."</p>
+            <span>- Lisa T.</span>
+        </div>
+        <div class="testimonial">
+            <p>"The best online store for tech lovers! Great deals and fantastic customer service."</p>
+            <span>- David M.</span>
+        </div>
+    </div>
+</div>
+
+    <!-- <div class="welcome">
+        <h2>Welcome to TechnoVerse</h2>
+        <p>Discover the latest in technology, shipped to your doorstep worldwide.</p>
+        <a href="{% url 'product_list' 'all' %}"><button>Shop Now</button></a>
+    </div> -->
+
+    <!-- <section class="features">
+        <div>
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230718/pngtree-illustration-of-a-conceptual-electronic-device-network-in-3d-image_3907551.jpg" alt="Feature 1">
+            <h3>Wide Product Range</h3>
+            <p>From phones to smartwatches, find all your tech essentials in one place.</p>
+        </div>
+        <div>
+            <img src="https://a.storyblok.com/f/165154/1280x720/922b3e014d/01_fast-international-shipping-ecommerce.jpg/m/" alt="Feature 2">
+            <h3>Fast Worldwide Shipping</h3>
+            <p>Get your favorite gadgets delivered quickly, no matter where you are.</p>
+        </div>
+        <div>
+            <img src="https://cdn.prod.website-files.com/64a83d4453b353ae789d6387/6576f0995897f1db762833f2_23s.jpg" alt="Feature 3">
+            <h3>Exceptional Customer Support</h3>
+            <p>We’re here to help you every step of the way. Your satisfaction is our priority.</p>
+        </div>
+    </section> -->
+
+    <!-- Below for About Us -->
+    <section id="about-us" class="about-us">
+        <div class="about-container">
+            <div class="about-image">
+                <!-- <img src="https://shivamstockbroking.com/assets/website/abtcontent/5f17115c212b2abt.jpg" alt="About Us"> -->
+                <img src="https://www.networkadvertising.co.in/images/net/aboutus.jpg" alt="About Us">
+            </div>
+            <div style="font-family: 'Poppins', sans-serif;" class="about-content">
+                <h2>About Us</h2>
+                <p>
+                    Welcome to TechnoVerse, your go-to place for the latest and greatest in technology. We offer a curated selection of premium electronic gadgets, including smartphones, smartwatches, and other innovative products.
+                </p>
+                <p>
+                    Our mission is to provide high-quality, cutting-edge tech products and deliver them worldwide, directly to your doorstep. We are passionate about technology and customer satisfaction, and we’re committed to bringing you the best in the industry.
+                </p>
+                <a href="{% url 'abouts' %}" class="btn-learn-more">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+ 
+
+
+<!-- Below for Contact Us -->
+<section id="contact-us" class="contact-us">
+    <div class="contact-container">
+        <div class="contact-image">
+            <img src="https://img.freepik.com/free-vector/organic-flat-man-customer-support_23-2148893295.jpg?semt=ais_hybrid" alt="Contact Us">
+        </div>
+        <div style="font-family: 'Poppins', sans-serif;" class="contact-content">
+            <h2>Contact Us</h2>
+            <p>
+                Our team is ready to assist you. Whether it's a product inquiry or support request, any questions, feedback. Feel free to get in touch with us. Visit our Contact Us page for more details."
+            </p>
+            <p><b style="color: #4cd7d0;">Email:</b> info@TechnoVerse.com</p>
+            <p><b style="color: #4cd7d0;">Phone:</b> + 1235 2355 98</p>
+            <a href="{% url 'contacts' %}" class="btn-learn-more">Learn More</a>
+        </div>
+    </div>
+</section>
+
+
+    
+
+
+    <div class="total-container">
+        <main class="main-container">
+              <div class="div">
+                <h2>TechnoVerse</h2>
+                <ul id="Techno">
+                    <li>Designed with passion by <b style="color: red;">Sri Swarna Kamal</b>,<br> bringing the latest electronic gadgets to your doorstep worldwide.</li><br>
+                    <li>Explore a wide range of cutting-edge technology at TechnoVerse,<br> your trusted destination for innovation.</li><br>
+                    <li>We are committed to delivering exceptional quality and service<br> to tech enthusiasts everywhere.</li><br>
+                </ul>
+                <h2>Our Newsletter</h2>
+                <p style="line-height: 1.5;">Subscribe our Newsletter to Receive the Latest News and<br>
+                     Exclusive offers Every Eeek.</p>
+                <input type="search"/><button id="subscribe">Subscribe</button>
+              </div>
+
+              <div class="div">
+                    <h2>Help</h2>
+                   <ul>
+                      <a href="#"><li>Track Your Order</li><br>
+                      <li>Frequently Asked Questions</li><br>
+                      <li>Returns</li><br>
+                      <li>Cancellations</li><br>
+                      <li>Payments</li><br>
+                      <li>Customer Care</li><br>
+                      <li>How Do I Redeem My Coupon</li></a>
+                    </ul>
+              </div>
+
+              <div class="div">
+                <h2>Shop by</h2>
+                <ul>
+                 <a href="#"><li>Men</li><br>
+                  <li>Women</li><br>
+                  <li>Kids</li><br>
+                  <li>Indie</li><br>
+                  <li>Stores</li><br>
+                  <li>New Arrivals</li><br>
+                  <li>Brand Directory</li><br>
+                  <li>Home</li><br>
+                  <li>Collections</li></a>
+                </ul>
+              </div>
+
+              <div class="div">
+                <h2>Follow Us</h2>
+                <ul>
+                   <a href="#"><li>Facebook</li><br>
+                    <li>Instagram-TechnoVerse</li><br>
+                    <li>Twitter</li><br>
+                    <li>Pinterest</li><br></a>
+                  </ul>
+              </div>
+        </main>
+
+        <div class="foot-container">
+            <div>
+               <p>Payment methods</p>
+               <ul>
+                <li class="img"><image src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSED_hyOPq73HJoTgoblxMMZp83UnaRIBBW5FcfNkyvtb_HDwxB" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://e7.pngegg.com/pngimages/506/310/png-clipart-logo-visa-3-d-secure-organization-font-visa-blue-text.png" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://e7.pngegg.com/pngimages/169/1014/png-clipart-mastercard-logo-encapsulated-postscript-financial-services-mastercard-cdr-label.png" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://png.pngtree.com/png-clipart/20210530/original/pngtree-online-shop-cash-on-delivery-icon-png-image_6364043.jpg" height="50px" width="100px"/></li>
+                <li class="img"><image src="https://static.wixstatic.com/media/d596f6_7431ec89651948d3a57b74b8c2cc801d~mv2.png/v1/fill/w_584,h_326,al_c,q_90,usm_0.66_1.00_0.01/d596f6_7431ec89651948d3a57b74b8c2cc801d~mv2.webp" height="50px" width="100px"/></li>
+            </ul>
+            </div>
+            <div>
+               <p id="secure">Secure Systems</p>
+               <image id="ssl" src="https://cdn.prod.website-files.com/6209ea99ee1f96af1bce7bee/648c16b40a5085a9f6c95255_256%20Bit.png" height="80px" width="150px"/>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 TechnoVerse. All Rights Reserved.</p>
+    </footer>
+    
+</body>
+</html>   
